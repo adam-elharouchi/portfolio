@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adam El Harouchi</title>
+<meta name="description" content="Portfolio of Adam El Harouchi — finance, business analytics, and software. Featuring AnalytIQ, an AI-powered analytics learning platform.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<style>
+  :root{
+    --bg:#fbfbfa; --surface:#fff; --surface-2:#f4f4f2; --border:#e3e2de;
+    --text:#1a1a18; --text-dim:#5c5b56; --text-faint:#8a8984;
+    --accent:#1f5c4d; --accent-soft:#e8f0ed; --accent-text:#1f5c4d;
+    --radius:14px; --maxw:960px;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#121311; --surface:#1b1d1a; --surface-2:#232622; --border:#32352f;
+      --text:#eceae4; --text-dim:#a8a69e; --text-faint:#7a7872;
+      --accent:#6bbfa4; --accent-soft:#1c2b26; --accent-text:#8fd4bb;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121311; --surface:#1b1d1a; --surface-2:#232622; --border:#32352f;
+    --text:#eceae4; --text-dim:#a8a69e; --text-faint:#7a7872;
+    --accent:#6bbfa4; --accent-soft:#1c2b26; --accent-text:#8fd4bb;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--sans); font-size:16px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 16px}
+  a{color:var(--accent-text); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ---- header ---- */
+  header{padding:72px 0 44px; text-align:center; border-bottom:1px solid var(--border)}
+  h1{
+    margin:0 0 10px; font-size:clamp(2rem,6vw,3.1rem); line-height:1.1;
+    letter-spacing:-0.025em; font-weight:650;
+  }
+  .tagline{
+    margin:0 0 6px; color:var(--text-dim); font-size:clamp(1rem,2.6vw,1.2rem);
+    letter-spacing:.01em;
+  }
+  .school{margin:0 0 26px; color:var(--text-faint); font-size:.92rem}
+  .links{display:flex; flex-wrap:wrap; gap:10px; justify-content:center}
+  .links a{
+    display:inline-block; padding:8px 16px; border:1px solid var(--border);
+    border-radius:999px; background:var(--surface); color:var(--text);
+    font-size:.88rem; font-weight:500; transition:border-color .15s,background .15s;
+  }
+  .links a:hover{border-color:var(--accent); background:var(--accent-soft); text-decoration:none}
+
+  /* ---- intro ---- */
+  .intro{
+    padding:36px 0 8px; color:var(--text-dim); font-size:1.02rem;
+    max-width:720px; margin:0 auto;
+  }
+
+  /* ---- sections ---- */
+  section{padding:40px 0}
+  h2{
+    margin:0 0 4px; font-size:.78rem; font-weight:650; text-transform:uppercase;
+    letter-spacing:.11em; color:var(--text-faint);
+  }
+  h2 + .sub{margin:0 0 22px; color:var(--text-dim); font-size:.95rem}
+
+  /* ---- featured ---- */
+  .featured{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); padding:clamp(22px,4vw,36px); margin-top:14px;
+    position:relative; overflow:hidden;
+  }
+  .featured::before{
+    content:""; position:absolute; inset:0 0 auto 0; height:3px;
+    background:linear-gradient(90deg,var(--accent),transparent);
+  }
+  .badge{
+    display:inline-block; padding:3px 10px; border-radius:999px;
+    background:var(--accent-soft); color:var(--accent-text);
+    font-size:.7rem; font-weight:650; text-transform:uppercase; letter-spacing:.09em;
+    margin-bottom:14px;
+  }
+  .featured h3{margin:0 0 4px; font-size:clamp(1.5rem,4vw,2rem); letter-spacing:-.02em}
+  .featured .live{margin:0 0 18px; font-size:.9rem; color:var(--text-faint)}
+  .featured p{margin:0 0 20px; color:var(--text-dim)}
+  .featured p strong{color:var(--text); font-weight:600}
+
+  /* 6 specs — 3/2/1 columns all divide evenly, so no empty cells */
+  .specs{
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:1px; background:var(--border); border:1px solid var(--border);
+    border-radius:10px; overflow:hidden; margin-bottom:22px;
+  }
+  @media (max-width:700px){ .specs{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:420px){ .specs{grid-template-columns:1fr} }
+  .spec{background:var(--surface-2); padding:13px 15px}
+  .spec dt{
+    font-size:.68rem; text-transform:uppercase; letter-spacing:.09em;
+    color:var(--text-faint); font-weight:650; margin-bottom:3px;
+  }
+  .spec dd{margin:0; font-size:.86rem; color:var(--text); line-height:1.5}
+  .spec dd .n{font-family:var(--mono); font-weight:600}
+
+  .btn{
+    display:inline-block; padding:10px 20px; border-radius:9px;
+    background:var(--accent); color:#fff; font-weight:600; font-size:.9rem;
+  }
+  :root[data-theme="dark"] .btn, :root:not([data-theme="light"]) .btn{color:#0f1512}
+  @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .btn{color:#fff}}
+  .btn:hover{text-decoration:none; opacity:.9}
+
+  /* ---- project list ---- */
+  .projects{display:grid; gap:10px}
+  .card{
+    display:block; background:var(--surface); border:1px solid var(--border);
+    border-radius:11px; padding:16px 18px; color:var(--text);
+    transition:border-color .15s, transform .15s;
+  }
+  .card:hover{border-color:var(--accent); text-decoration:none; transform:translateY(-1px)}
+  .card-top{display:flex; flex-wrap:wrap; gap:8px; align-items:baseline; margin-bottom:5px}
+  .card-title{font-weight:600; font-size:1.02rem; letter-spacing:-.01em}
+  .tag{
+    font-size:.68rem; font-weight:600; text-transform:uppercase; letter-spacing:.07em;
+    color:var(--accent-text); background:var(--accent-soft);
+    padding:2px 8px; border-radius:999px; white-space:nowrap;
+  }
+  .card-result{margin:0; font-size:.9rem; color:var(--text-dim)}
+  .card-result .n{font-family:var(--mono); color:var(--text); font-weight:600}
+
+  /* ---- skills ---- */
+  .skills{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px}
+  .skillgroup h4{
+    margin:0 0 8px; font-size:.7rem; text-transform:uppercase; letter-spacing:.09em;
+    color:var(--text-faint); font-weight:650;
+  }
+  .skillgroup p{margin:0; font-size:.88rem; color:var(--text-dim); line-height:1.7}
+
+  /* ---- footer ---- */
+  footer{
+    padding:44px 0 56px; text-align:center; border-top:1px solid var(--border);
+    margin-top:24px;
+  }
+  footer p{margin:0 0 10px; color:var(--text-dim); font-size:.95rem}
+  footer .mail{font-weight:600; font-size:1rem}
+
+  .toggle{
+    position:fixed; top:14px; right:14px; z-index:10;
+    width:36px; height:36px; border-radius:50%;
+    border:1px solid var(--border); background:var(--surface); color:var(--text);
+    cursor:pointer; font-size:15px; line-height:1; display:grid; place-items:center;
+  }
+  .toggle:hover{border-color:var(--accent)}
+  @media (max-width:520px){
+    header{padding:52px 0 34px}
+    section{padding:30px 0}
+  }
+</style>
+</head>
+<body>
+
+<button class="toggle" id="themeToggle" aria-label="Toggle colour scheme">◐</button>
+
+<header>
+  <div class="wrap">
+    <h1>Adam El Harouchi</h1>
+    <p class="tagline">Finance&nbsp;· Business Analytics&nbsp;· Software</p>
+    <p class="school">Hult International Business School, Boston</p>
+    <nav class="links">
+      <a href="https://github.com/adam-elharouchi/portfolio">GitHub</a>
+      <a href="https://www.linkedin.com/in/adam-el-harouchi">LinkedIn</a>
+      <a href="mailto:adamelharouchi5@gmail.com">Email</a>
+      <a href="https://www.myanalytiq.org">AnalytIQ&nbsp;↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="intro">
+    I work at the intersection of financial analysis and applied data science — valuation and
+    forensic accounting on one side, machine learning and production software on the other.
+    Each project below links to a write-up covering the problem, the method, the measured
+    result, and the limitations.
+  </p>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <h2>Featured</h2>
+    <div class="featured">
+      <span class="badge">Founder &amp; sole developer</span>
+      <h3>AnalytIQ</h3>
+      <p class="live">
+        Live at <a href="https://www.myanalytiq.org">myanalytiq.org</a>
+        · <a href="https://github.com/adam-elharouchi/AnalytIQ">source</a>
+      </p>
+      <p>
+        Analytics professors can't assign much code, because grading it means either reading
+        every submission by hand or comparing it to a reference answer as text — and text
+        comparison doesn't measure correctness. AnalytIQ takes a professor's own chapter,
+        generates exercises <strong>with executable test cases</strong> from it, and scores
+        submissions by <strong>running the code and checking the actual output</strong>. No
+        string-similarity comparison anywhere in the grading path. It plugs into an
+        institution's existing LMS over LTI 1.3, so students never create an account and grades
+        flow straight back to the gradebook.
+      </p>
+      <dl class="specs">
+        <div class="spec"><dt>Stack</dt><dd>Flask · PostgreSQL · Redis + Celery · Gemini</dd></div>
+        <div class="spec"><dt>Commits</dt><dd><span class="n">710</span></dd></div>
+        <div class="spec"><dt>Python</dt><dd><span class="n">~39,800</span> lines</dd></div>
+        <div class="spec"><dt>Test files</dt><dd><span class="n">66</span></dd></div>
+        <div class="spec"><dt>Languages graded</dt><dd>Python · R · JS · SQL · Java</dd></div>
+        <div class="spec"><dt>Auth</dt><dd>JWT · OIDC SSO · LTI 1.3</dd></div>
+      </dl>
+      <a class="btn" href="01-analytiq/">Read the full write-up →</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Finance</h2>
+    <p class="sub">Forensic accounting and equity valuation.</p>
+    <div class="projects">
+      <a class="card" href="03-finance/technoglobal-forensic-accounting/">
+        <div class="card-top"><span class="card-title">TechnoGlobal Forensic Accounting</span><span class="tag">US GAAP</span></div>
+        <p class="card-result">8 red flags, 3 fraudulent. Net income overstated <span class="n">$141M</span>; restatement uncovered a hidden debt-covenant breach at <span class="n">1.04x</span> D/E.</p>
+      </a>
+      <a class="card" href="03-finance/amazon-investment-proposal/">
+        <div class="card-top"><span class="card-title">Amazon (AMZN) Equity Research</span><span class="tag">DCF / FCFF</span></div>
+        <p class="card-result">BUY, <span class="n">$292.99</span> target — <span class="n">+29.5%</span> upside, with a bear case at <span class="n">$212.05</span>.</p>
+      </a>
+      <a class="card" href="03-finance/coca-cola-equity-analysis/">
+        <div class="card-top"><span class="card-title">Coca-Cola (KO) Equity Analysis</span><span class="tag">Comparables + DDM</span></div>
+        <p class="card-result">Three methods, three answers. Fairly valued on earnings; the DDM outlier explained by its own sensitivity rather than banked.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Business Analytics &amp; Machine Learning</h2>
+    <p class="sub">Seven projects in Python, results stated as measured.</p>
+    <div class="projects">
+      <a class="card" href="02-business-analytics/football-player-valuation/">
+        <div class="card-top"><span class="card-title">Football Player Market Valuation</span><span class="tag">Regression</span></div>
+        <p class="card-result">R² <span class="n">0.992</span>, MAE <span class="n">149k</span> — tuned Gradient Boosting. Flagged for likely target leakage.</p>
+      </a>
+      <a class="card" href="02-business-analytics/credit-card-fraud-detection/">
+        <div class="card-top"><span class="card-title">Credit Card Fraud Detection</span><span class="tag">Imbalanced</span></div>
+        <p class="card-result"><span class="n">87.8%</span> fraud recall via SMOTE on <span class="n">284,807</span> transactions, at <span class="n">6.4%</span> precision — framed as a cost trade-off.</p>
+      </a>
+      <a class="card" href="02-business-analytics/nyc-schools-eda/">
+        <div class="card-top"><span class="card-title">NYC School Demographics</span><span class="tag">EDA + Clustering</span></div>
+        <p class="card-result">k=<span class="n">2</span>, silhouette <span class="n">0.254</span> across ~<span class="n">1,800</span> schools, after handling DOE privacy suppression.</p>
+      </a>
+      <a class="card" href="02-business-analytics/breast-cancer-classification/">
+        <div class="card-top"><span class="card-title">Breast Cancer Diagnosis</span><span class="tag">Feature Selection</span></div>
+        <p class="card-result"><span class="n">97.98%</span> with LASSO. KBest and LASSO independently agree on the same 2 features.</p>
+      </a>
+      <a class="card" href="02-business-analytics/titanic-survival/">
+        <div class="card-top"><span class="card-title">Titanic Survival</span><span class="tag">Model Comparison</span></div>
+        <p class="card-result"><span class="n">81.0%</span> accuracy. Scaling moves KNN and SVM; tree models don't budge.</p>
+      </a>
+      <a class="card" href="02-business-analytics/airbnb-vienna-regression/">
+        <div class="card-top"><span class="card-title">Airbnb Vienna Pricing</span><span class="tag">SEMMA</span></div>
+        <p class="card-result">R² <span class="n">0.13</span> on <span class="n">8,302</span> listings — a weak model, reported as such, with entire-home premium at <span class="n">+€27</span>.</p>
+      </a>
+      <a class="card" href="02-business-analytics/pca-digit-recognition/">
+        <div class="card-top"><span class="card-title">PCA on Handwritten Digits</span><span class="tag">Dimensionality</span></div>
+        <p class="card-result">Component loadings reshaped back into pixel space to show what each PC physically represents.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>SQL</h2>
+    <p class="sub">Relational querying on the DreamHome schema.</p>
+    <div class="projects">
+      <a class="card" href="04-sql/">
+        <div class="card-top"><span class="card-title">DreamHome Database Labs</span><span class="tag">4 labs</span></div>
+        <p class="card-result"><span class="n">137</span> queries — aggregation and <code>HAVING</code>, inner and outer joins across 5+ tables, set operations, correlated subqueries, DDL.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Operations</h2>
+    <p class="sub">Process analysis and capacity planning.</p>
+    <div class="projects">
+      <a class="card" href="05-operations/aeroshield/">
+        <div class="card-top"><span class="card-title">AeroShield Operations Capstone</span><span class="tag">Throughput</span></div>
+        <p class="card-result">Cycle-time analysis and bottleneck identification for an advanced-materials manufacturer scaling from pilot to industrial production.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Software</h2>
+    <p class="sub">Builds outside AnalytIQ.</p>
+    <div class="projects">
+      <a class="card" href="06-software/budgeting-app/">
+        <div class="card-top"><span class="card-title">Personal Finance Dashboard</span><span class="tag">Next.js · Plaid</span></div>
+        <p class="card-result">Live bank-account linking through Plaid, with the token exchange kept server-side. TypeScript, Zustand, ~<span class="n">900</span> lines.</p>
+      </a>
+      <a class="card" href="06-software/interview-simulator/">
+        <div class="card-top"><span class="card-title">Voice Interview Simulator</span><span class="tag">Node · Claude API</span></div>
+        <p class="card-result">Speak an answer, get it transcribed via the Web Speech API and evaluated by Claude.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Technical Summary</h2>
+    <div class="skills">
+      <div class="skillgroup">
+        <h4>Languages</h4>
+        <p>Python · SQL · TypeScript / JavaScript · R</p>
+      </div>
+      <div class="skillgroup">
+        <h4>Data &amp; ML</h4>
+        <p>pandas · numpy · scikit-learn · LightGBM · imbalanced-learn · matplotlib · seaborn · regression · classification · clustering · PCA · feature selection · hyperparameter tuning</p>
+      </div>
+      <div class="skillgroup">
+        <h4>Finance</h4>
+        <p>DCF / FCFF · WACC &amp; CAPM · DDM · comparable company analysis · multiples · scenario &amp; sensitivity analysis · US GAAP (ASC) · statement restatement · earnings-management detection</p>
+      </div>
+      <div class="skillgroup">
+        <h4>Engineering</h4>
+        <p>Flask · Next.js / React · Node.js · PostgreSQL · Redis · Celery · Docker · REST APIs · LTI 1.3 · OIDC SSO · pytest</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Open to roles in financial analysis, business analytics, and data science.</p>
+    <p class="mail"><a href="mailto:adamelharouchi5@gmail.com">adamelharouchi5@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='aeh-theme', btn=document.getElementById('themeToggle'), root=document.documentElement;
+  try{ var s=localStorage.getItem(KEY); if(s){root.setAttribute('data-theme',s);} }catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    if(!cur){ cur=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'; }
+    var next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{ localStorage.setItem(KEY,next); }catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
