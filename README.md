@@ -7,6 +7,7 @@
 Hult International Business School, Boston
 
 [Portfolio site](https://adam-elharouchi.github.io/portfolio) ·
+[Résumé (PDF)](resume/Adam-El-Harouchi-Resume.pdf) ·
 [LinkedIn](https://www.linkedin.com/in/adam-el-harouchi) ·
 [Email](mailto:adamelharouchi5@gmail.com)
 
@@ -26,7 +27,9 @@ method, the measured result, and the limitations.
 > **An AI-powered analytics learning platform that generates coursework from a professor's own
 > material and grades student code by executing it.**
 >
-> 🔗 **[myanalytiq.org](https://www.myanalytiq.org)** · [Source](https://github.com/adam-elharouchi/AnalytIQ) · **[Full write-up →](01-analytiq/)**
+> 🔗 **[myanalytiq.com](https://myanalytiq.com)** · [Source](https://github.com/adam-elharouchi/AnalytIQ) · **[Full write-up →](01-analytiq/)**
+
+[![AnalytIQ landing page](01-analytiq/screenshots/01-landing-hero.jpg)](01-analytiq/)
 
 Analytics professors can't assign much code, because grading it means either reading every
 submission by hand or comparing it to a reference answer as text — and text comparison doesn't

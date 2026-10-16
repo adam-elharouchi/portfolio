@@ -3,7 +3,17 @@
 **An AI-powered analytics learning platform that generates coursework from a professor's own
 material and grades student code by running it.**
 
-🔗 **Live:** [myanalytiq.org](https://www.myanalytiq.org) · **Source:** [github.com/adam-elharouchi/AnalytIQ](https://github.com/adam-elharouchi/AnalytIQ)
+🔗 **Live:** [myanalytiq.com](https://myanalytiq.com) · **Source:** [github.com/adam-elharouchi/AnalytIQ](https://github.com/adam-elharouchi/AnalytIQ)
+
+---
+
+## The product
+
+![AnalytIQ landing page — "Your syllabus. Interactive labs. In under 60 seconds."](screenshots/01-landing-hero.jpg)
+
+![How it works — upload your PDF, AI generates labs, students practice](screenshots/02-how-it-works.jpg)
+
+![Features — sandboxed code execution, automated grading, context-locked AI tutor, analytics dashboard, LTI 1.3](screenshots/03-features.jpg)
 
 ---
 
@@ -115,3 +125,4 @@ alongside the fundraising and institutional outreach materials in this folder.
 
 - [`analytiq-pitch-deck.pdf`](analytiq-pitch-deck.pdf) — investor pitch deck
 - [`analytiq-product-packet.pdf`](analytiq-product-packet.pdf) — institutional product overview
+- [`screenshots/`](screenshots/) — live product screenshots
