@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AeroShield — Operations Management Platform</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3DAB8E;
+    --teal-lt: #D4F0E8;
+    --teal-dk: #085041;
+    --blue: #2B6CB8;
+    --blue-lt: #D6E6F7;
+    --navy: #1A2E4A;
+    --navy-lt: #243550;
+    --white: #FFFFFF;
+    --off: #F5F8FC;
+    --gray: #E8EEF5;
+    --mid: #8899AA;
+    --accent: #F0A500;
+    --accent-lt: #FFF3CD;
+    --danger: #E53E3E;
+    --danger-lt: #FCEBEB;
+    --green: #2D7D46;
+    --green-lt: #D4F0E8;
+    --sidebar: 220px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--off); color: var(--navy); display: flex; min-height: 100vh; }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: var(--sidebar); background: var(--navy); position: fixed; top: 0; left: 0; height: 100vh;
+    display: flex; flex-direction: column; z-index: 100; overflow: hidden;
+  }
+  .sidebar-logo { padding: 20px 18px 16px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .logo-mark { display: flex; align-items: center; gap: 10px; }
+  .logo-hex { width: 34px; height: 34px; background: var(--teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .logo-hex svg { width: 18px; height: 18px; fill: white; }
+  .logo-text { color: white; font-size: 14px; font-weight: 600; letter-spacing: -0.3px; }
+  .logo-sub { color: var(--mid); font-size: 10px; font-weight: 400; margin-top: 2px; letter-spacing: 0.5px; }
+  .sidebar-nav { flex: 1; padding: 12px 0; overflow-y: auto; }
+  .nav-section { padding: 8px 16px 4px; font-size: 9px; font-weight: 600; color: rgba(255,255,255,.3); letter-spacing: 1.5px; text-transform: uppercase; }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px; padding: 9px 18px; cursor: pointer;
+    color: rgba(255,255,255,.6); font-size: 13px; font-weight: 400; transition: all .15s;
+    border-left: 3px solid transparent; margin: 1px 0;
+  }
+  .nav-item:hover { color: white; background: rgba(255,255,255,.05); }
+  .nav-item.active { color: white; background: rgba(61,171,142,.15); border-left-color: var(--teal); }
+  .nav-item svg { width: 15px; height: 15px; opacity: .7; flex-shrink: 0; }
+  .nav-item.active svg { opacity: 1; }
+  .sidebar-footer { padding: 14px 18px; border-top: 1px solid rgba(255,255,255,.08); font-size: 10px; color: rgba(255,255,255,.3); }
+
+  /* ── Main ── */
+  .main { margin-left: var(--sidebar); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+  .topbar {
+    background: white; border-bottom: 1px solid var(--gray); padding: 0 28px;
+    height: 56px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .topbar-title { font-size: 15px; font-weight: 600; color: var(--navy); }
+  .topbar-meta { font-size: 12px; color: var(--mid); font-family: 'DM Mono', monospace; }
+  .topbar-badge { background: var(--teal-lt); color: var(--teal-dk); font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 99px; }
+  .content { padding: 24px 28px; flex: 1; }
+
+  /* ── Pages ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── Cards ── */
+  .card { background: white; border-radius: 12px; border: 1px solid var(--gray); padding: 20px; }
+  .card-sm { background: white; border-radius: 10px; border: 1px solid var(--gray); padding: 16px; }
+  .section-title { font-size: 11px; font-weight: 600; color: var(--mid); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+
+  /* ── Metric cards ── */
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; margin-bottom: 22px; }
+  .metric { background: white; border-radius: 12px; border: 1px solid var(--gray); padding: 18px; position: relative; overflow: hidden; }
+  .metric::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .metric.m-blue::after { background: var(--blue); }
+  .metric.m-teal::after { background: var(--teal); }
+  .metric.m-amber::after { background: var(--accent); }
+  .metric.m-red::after { background: var(--danger); }
+  .metric-label { font-size: 11px; color: var(--mid); margin-bottom: 6px; font-weight: 400; }
+  .metric-value { font-size: 28px; font-weight: 600; color: var(--navy); line-height: 1; font-family: 'DM Mono', monospace; }
+  .metric-sub { font-size: 11px; color: var(--mid); margin-top: 5px; }
+  .metric-badge { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 99px; }
+  .badge-ok { background: var(--green-lt); color: var(--green); }
+  .badge-warn { background: var(--accent-lt); color: #7A5200; }
+  .badge-alert { background: var(--danger-lt); color: var(--danger); }
+
+  /* ── Charts grid ── */
+  .charts-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; margin-bottom: 22px; }
+  .chart-wrap { position: relative; height: 200px; }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--navy); color: white; padding: 10px 14px; font-weight: 500; font-size: 11px; letter-spacing: 0.5px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--gray); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--off); }
+  .status-ok { background: var(--green-lt); color: var(--green); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; display: inline-block; }
+  .status-warn { background: var(--accent-lt); color: #7A5200; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; display: inline-block; }
+  .status-alert { background: var(--danger-lt); color: var(--danger); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; display: inline-block; }
+  .status-bn { background: var(--danger); color: white; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; display: inline-block; }
+
+  /* ── Bottom grid ── */
+  .bottom-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+
+  /* ── Alerts ── */
+  .alert-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--gray); }
+  .alert-item:last-child { border-bottom: none; }
+  .alert-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .dot-red { background: var(--danger); }
+  .dot-amber { background: var(--accent); }
+  .dot-green { background: var(--teal); }
+  .alert-text { font-size: 12px; color: var(--navy); line-height: 1.5; }
+
+  /* ── WIP bars ── */
+  .wip-item { margin-bottom: 14px; }
+  .wip-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 12px; }
+  .wip-name { color: var(--navy); font-weight: 500; }
+  .wip-val { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; }
+  .wip-track { background: var(--gray); border-radius: 99px; height: 8px; position: relative; }
+  .wip-fill { border-radius: 99px; height: 8px; transition: width .5s ease; }
+  .wip-min-line { position: absolute; top: -3px; width: 2px; height: 14px; background: var(--danger); border-radius: 1px; }
+  .wip-note { font-size: 10px; color: var(--mid); margin-top: 3px; }
+
+  /* ── Schedule ── */
+  .sched-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .sched-day { font-size: 11px; color: var(--mid); width: 32px; font-family: 'DM Mono', monospace; flex-shrink: 0; }
+  .sched-block { height: 22px; border-radius: 4px; display: flex; align-items: center; padding: 0 7px; font-size: 10px; color: white; font-weight: 500; white-space: nowrap; overflow: hidden; }
+
+  /* ── Inputs ── */
+  .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .input-group { display: flex; flex-direction: column; gap: 5px; }
+  label { font-size: 12px; font-weight: 500; color: var(--navy); }
+  input[type=number], select {
+    padding: 9px 12px; border: 1.5px solid var(--gray); border-radius: 8px; font-size: 13px;
+    font-family: 'DM Mono', monospace; color: var(--navy); background: white;
+    transition: border-color .15s; outline: none; width: 100%;
+  }
+  input[type=number]:focus, select:focus { border-color: var(--teal); }
+  .input-note { font-size: 10px; color: var(--mid); }
+  .btn { padding: 10px 20px; background: var(--teal); color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; font-family: 'DM Sans', sans-serif; }
+  .btn:hover { background: var(--teal-dk); transform: translateY(-1px); }
+  .btn-secondary { background: var(--off); color: var(--navy); border: 1.5px solid var(--gray); }
+  .btn-secondary:hover { background: var(--gray); transform: none; }
+
+  /* ── Capacity bars ── */
+  .cap-row { margin-bottom: 12px; }
+  .cap-header { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 12px; font-weight: 500; }
+  .cap-bars { display: flex; gap: 3px; height: 12px; border-radius: 6px; overflow: hidden; background: var(--gray); }
+  .cap-actual { background: var(--blue); border-radius: 6px 0 0 6px; }
+  .cap-effective { background: var(--teal-lt); }
+  .cap-legend { display: flex; gap: 14px; margin-top: 3px; font-size: 10px; color: var(--mid); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 4px; }
+
+  /* ── Inventory table ── */
+  .inv-status { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+  .inv-ok { background: var(--green-lt); color: var(--green); }
+  .inv-low { background: var(--accent-lt); color: #7A5200; }
+  .inv-critical { background: var(--danger-lt); color: var(--danger); }
+
+  /* ── Page header ── */
+  .page-header { margin-bottom: 22px; }
+  .page-header h2 { font-size: 22px; font-weight: 600; color: var(--navy); }
+  .page-header p { font-size: 13px; color: var(--mid); margin-top: 4px; }
+
+  /* ── Lean ── */
+  .priority-high { background: var(--danger-lt); color: var(--danger); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; display: inline-block; }
+  .priority-med  { background: var(--accent-lt); color: #7A5200; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; display: inline-block; }
+  .priority-low  { background: var(--green-lt); color: var(--green); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; display: inline-block; }
+
+  /* ── Trend mini ── */
+  .trend-up { color: var(--green); font-size: 11px; }
+  .trend-dn { color: var(--danger); font-size: 11px; }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--gray); }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-dot { position: absolute; left: -20px; top: 3px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; }
+  .tl-phase { font-size: 11px; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.3px; }
+  .tl-title { font-size: 13px; font-weight: 500; color: var(--navy); margin-bottom: 2px; }
+  .tl-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+  .tl-cost { font-size: 11px; font-family: 'DM Mono', monospace; margin-top: 4px; }
+
+  /* ── Responsive spacers ── */
+  .gap-sm { height: 14px; }
+  .gap { height: 22px; }
+  .row { display: flex; gap: 16px; }
+  .row > * { flex: 1; min-width: 0; }
+
+  /* ── Range slider ── */
+  input[type=range] { -webkit-appearance: none; width: 100%; height: 4px; background: var(--gray); border-radius: 2px; outline: none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--teal); cursor: pointer; }
+
+  /* animation */
+  .page.active { animation: fadeIn .2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .divider { height: 1px; background: var(--gray); margin: 20px 0; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ SIDEBAR ═══════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">
+      <div class="logo-hex">
+        <svg viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7z"/></svg>
+      </div>
+      <div>
+        <div class="logo-text">AeroShield</div>
+        <div class="logo-sub">Operations Platform</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">Overview</div>
+    <div class="nav-item active" onclick="goto('dashboard')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      KPI Dashboard
+    </div>
+
+    <div class="nav-section">Tools</div>
+    <div class="nav-item" onclick="goto('capacity')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17h4v4H3zm7-8h4v12h-4zm7-6h4v18h-4z"/></svg>
+      Capacity & Scheduling
+    </div>
+    <div class="nav-item" onclick="goto('inventory')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zm0 12H4V9h16v10zM4 5h16v2H4z"/></svg>
+      Inventory Management
+    </div>
+    <div class="nav-item" onclick="goto('kpi')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+      KPI Tracker
+    </div>
+    <div class="nav-item" onclick="goto('lean')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      Lean Analysis
+    </div>
+
+    <div class="nav-section">Deep Dive</div>
+    <div class="nav-item" onclick="goto('implementation')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      Implementation Plan
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">Team 5 · Hult Business School · 2026</div>
+</aside>
+
+<!-- ═══════════════════════ MAIN ═══════════════════════ -->
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title" id="pageTitle">KPI Dashboard</div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span class="topbar-badge">Phase 1.1</span>
+      <span class="topbar-meta" id="weekLabel">Week of 13 Apr 2026</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══════════ PAGE: DASHBOARD ══════════ -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <h2>Plant Manager Dashboard</h2>
+        <p>Real-time operational performance — updated weekly by the operations team</p>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric m-blue">
+          <div class="metric-label">Aerogels produced</div>
+          <div class="metric-value" id="d-aerogels">240</div>
+          <div class="metric-sub">units this week</div>
+          <div class="metric-badge badge-warn">Target: 300</div>
+        </div>
+        <div class="metric m-blue">
+          <div class="metric-label">IGUs completed</div>
+          <div class="metric-value" id="d-igus">480</div>
+          <div class="metric-sub">units this week</div>
+          <div class="metric-badge badge-warn">Target: 600</div>
+        </div>
+        <div class="metric m-teal">
+          <div class="metric-label">Yield rate (post-CPD)</div>
+          <div class="metric-value" id="d-yield">90%</div>
+          <div class="metric-sub">54 of 60 passed QC</div>
+          <div class="metric-badge badge-ok">On target ≥ 90%</div>
+        </div>
+        <div class="metric m-teal">
+          <div class="metric-label">Vessel utilization</div>
+          <div class="metric-value" id="d-util">71%</div>
+          <div class="metric-sub">4 of 5 runs used</div>
+          <div class="metric-badge badge-warn">Target: ≥ 80%</div>
+        </div>
+        <div class="metric m-amber">
+          <div class="metric-label">Scrap / rework</div>
+          <div class="metric-value" id="d-scrap">6</div>
+          <div class="metric-sub">units this week</div>
+          <div class="metric-badge badge-ok">Within limit &lt; 24</div>
+        </div>
+        <div class="metric m-amber">
+          <div class="metric-label">Molding output</div>
+          <div class="metric-value" id="d-molding">264</div>
+          <div class="metric-sub">gels cast this week</div>
+          <div class="metric-badge badge-ok">Target: 264 ✓</div>
+        </div>
+        <div class="metric m-red">
+          <div class="metric-label">Order fulfillment</div>
+          <div class="metric-value" id="d-fulfillment">80%</div>
+          <div class="metric-sub">480 of 600 IGUs</div>
+          <div class="metric-badge badge-warn">Below target</div>
+        </div>
+        <div class="metric" style="border-top: 3px solid #557799;">
+          <div class="metric-label">Energy proxy</div>
+          <div class="metric-value" id="d-energy" style="font-size:24px;">84</div>
+          <div class="metric-sub">shift-hours / week</div>
+          <div class="metric-badge" style="background:var(--gray);color:var(--mid);">Track trend</div>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="section-title">Weekly aerogel output vs. target — last 4 weeks</div>
+          <div class="chart-wrap"><canvas id="outputChart" role="img" aria-label="Bar chart of aerogel output vs target over 4 weeks">Output: 240, 240, 240, 300 vs target 300.</canvas></div>
+          <div style="display:flex;gap:16px;margin-top:10px;font-size:11px;color:var(--mid);">
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--blue);border-radius:2px;margin-right:4px;"></span>Actual</span>
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--danger);border-radius:2px;margin-right:4px;"></span>Target (300)</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">IGUs completed vs. demand</div>
+          <div class="chart-wrap"><canvas id="iguChart" role="img" aria-label="Stacked bar showing IGUs completed 480 vs demand 600">IGUs completed: 480, gap: 120.</canvas></div>
+          <div style="display:flex;gap:16px;margin-top:10px;font-size:11px;color:var(--mid);">
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--teal);border-radius:2px;margin-right:4px;"></span>Completed</span>
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--gray);border:1px solid #ccc;border-radius:2px;margin-right:4px;"></span>Gap</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-grid">
+        <!-- WIP Buffers -->
+        <div class="card-sm">
+          <div class="section-title">WIP buffer levels</div>
+          <div class="wip-item">
+            <div class="wip-header">
+              <span class="wip-name">Buffer 1 — Pre-vessel</span>
+              <span class="wip-val" style="color:var(--blue)">66</span>
+            </div>
+            <div class="wip-track">
+              <div class="wip-fill" style="width:50%;background:var(--blue);"></div>
+              <div class="wip-min-line" style="left:50%;"></div>
+            </div>
+            <div class="wip-note">Min: 66 · Max: 132 · Methanol environment</div>
+          </div>
+          <div class="wip-item">
+            <div class="wip-header">
+              <span class="wip-name">Buffer 2 — Post-vessel</span>
+              <span class="wip-val" style="color:var(--danger)">54</span>
+            </div>
+            <div class="wip-track">
+              <div class="wip-fill" style="width:30%;background:var(--accent);"></div>
+              <div class="wip-min-line" style="left:33%;"></div>
+            </div>
+            <div class="wip-note" style="color:var(--danger)">⚠ Below minimum (60) — restock required</div>
+          </div>
+          <div class="wip-item">
+            <div class="wip-header">
+              <span class="wip-name">Buffer 3 — Composite</span>
+              <span class="wip-val" style="color:var(--teal)">72</span>
+            </div>
+            <div class="wip-track">
+              <div class="wip-fill" style="width:30%;background:var(--teal);"></div>
+              <div class="wip-min-line" style="left:25%;"></div>
+            </div>
+            <div class="wip-note">Min: 60 · Max: 240 · Standard warehouse</div>
+          </div>
+        </div>
+
+        <!-- Schedule -->
+        <div class="card-sm">
+          <div class="section-title">Weekly vessel schedule</div>
+          <div class="sched-row"><div class="sched-day">Mon</div><div class="sched-block" style="flex:1.4;background:var(--blue);">Molding 7am–1pm</div><div class="sched-block" style="flex:1;background:#5A8AB8;margin-left:4px;">Solvex start</div></div>
+          <div class="sched-row"><div class="sched-day">Tue</div><div class="sched-block" style="flex:1;background:#8AAFD0;">Solvex continues (automated)</div></div>
+          <div class="sched-row"><div class="sched-day">Wed</div><div class="sched-block" style="flex:1;background:var(--danger);">CPD 6am–8pm</div><div class="sched-block" style="flex:.8;background:#D07070;margin-left:4px;">Depressurize</div></div>
+          <div class="sched-row"><div class="sched-day">Thu</div><div class="sched-block" style="flex:1;background:var(--accent);">Grading + Oven load 12:15pm</div></div>
+          <div class="sched-row"><div class="sched-day">Fri</div><div class="sched-block" style="flex:1;background:var(--teal);">Oven unload + QC + Composite line</div></div>
+          <div style="margin-top:10px;font-size:11px;color:var(--mid);">Run 1 of 4 planned · Next run starts Monday</div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="card-sm">
+          <div class="section-title">Alerts & flags</div>
+          <div class="alert-item"><div class="alert-dot dot-red"></div><div class="alert-text">Buffer 2 below minimum — 54 of 60 units. Restock before next vessel run.</div></div>
+          <div class="alert-item"><div class="alert-dot dot-amber"></div><div class="alert-text">Output at 80% of weekly target — 4th vessel run must complete by Thursday.</div></div>
+          <div class="alert-item"><div class="alert-dot dot-green"></div><div class="alert-text">Yield rate 90% — on target. QC grading complete for this run.</div></div>
+          <div class="alert-item"><div class="alert-dot dot-green"></div><div class="alert-text">All raw materials above safety stock minimum.</div></div>
+          <div class="alert-item"><div class="alert-dot dot-amber"></div><div class="alert-text">Annealing oven at 4 cycles — monitor if 5th vessel run added in Phase 1.1.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ PAGE: CAPACITY ══════════ -->
+    <div class="page" id="page-capacity">
+      <div class="page-header">
+        <h2>Capacity & Scheduling Tool</h2>
+        <p>Adjust weekly inputs to model different production scenarios</p>
+      </div>
+
+      <div class="row" style="margin-bottom:22px;align-items:flex-start;">
+        <!-- Inputs -->
+        <div class="card" style="flex:1.2;">
+          <div class="section-title">Weekly variable inputs</div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label>Vessel runs this week</label>
+              <input type="number" id="runs" value="4" min="1" max="5" oninput="recalcCapacity()">
+              <span class="input-note">Max 5 runs in Phase 1.1</span>
+            </div>
+            <div class="input-group">
+              <label>Weekly IGU demand</label>
+              <input type="number" id="demand" value="480" min="0" oninput="recalcCapacity()">
+              <span class="input-note">Customer orders this week</span>
+            </div>
+            <div class="input-group">
+              <label>Yield rate (%)</label>
+              <input type="number" id="yieldRate" value="90" min="50" max="100" oninput="recalcCapacity()">
+              <span class="input-note">Post-vessel QC pass rate</span>
+            </div>
+            <div class="input-group">
+              <label>Molding staff</label>
+              <input type="number" id="moldStaff" value="5" min="1" max="8" oninput="recalcCapacity()">
+              <span class="input-note">Min 4 for parallel casting</span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="section-title">Scenario presets</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-secondary" onclick="setScenario('base')">Base (Phase 1)</button>
+            <button class="btn btn-secondary" onclick="setScenario('p11')">Phase 1.1</button>
+            <button class="btn btn-secondary" onclick="setScenario('spike')">Demand Spike</button>
+            <button class="btn btn-secondary" onclick="setScenario('down')">Vessel Down</button>
+            <button class="btn btn-secondary" onclick="setScenario('staff')">Staff Shortage</button>
+          </div>
+        </div>
+
+        <!-- Output KPIs -->
+        <div style="flex:1;display:flex;flex-direction:column;gap:12px;">
+          <div class="card-sm">
+            <div class="section-title">Calculated outputs</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div><div style="font-size:11px;color:var(--mid);">Aerogels/week</div><div style="font-size:24px;font-weight:600;font-family:'DM Mono',monospace;" id="c-aerogels">240</div></div>
+              <div><div style="font-size:11px;color:var(--mid);">IGUs/week</div><div style="font-size:24px;font-weight:600;font-family:'DM Mono',monospace;" id="c-igus">480</div></div>
+              <div><div style="font-size:11px;color:var(--mid);">Demand met?</div><div style="font-size:14px;font-weight:600;margin-top:4px;" id="c-demand-met">YES</div></div>
+              <div><div style="font-size:11px;color:var(--mid);">vs. ARPA-E target</div><div style="font-size:14px;font-weight:600;margin-top:4px;" id="c-arpa">64%</div></div>
+            </div>
+          </div>
+          <div class="card-sm" id="c-alert-box">
+            <div style="font-size:12px;font-weight:500;" id="c-alert-text">All systems within capacity.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subprocess capacity table -->
+      <div class="card">
+        <div class="section-title">Subprocess capacity analysis — Design vs. Effective vs. Actual</div>
+        <table>
+          <thead><tr>
+            <th>Sub-Process</th>
+            <th>Design Capacity/wk</th>
+            <th>Effective Capacity/wk</th>
+            <th>Actual Output/wk</th>
+            <th>Utilization</th>
+            <th>Efficiency</th>
+            <th>Bottleneck?</th>
+          </tr></thead>
+          <tbody id="capTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══════════ PAGE: INVENTORY ══════════ -->
+    <div class="page" id="page-inventory">
+      <div class="page-header">
+        <h2>Inventory Management</h2>
+        <p>Track raw materials and WIP buffer levels — reorder alerts auto-calculated</p>
+      </div>
+
+      <div class="row" style="margin-bottom:22px;align-items:flex-start;">
+        <div class="card-sm" style="flex:0 0 220px;">
+          <div class="section-title">Weekly inputs</div>
+          <div class="input-group" style="margin-bottom:12px;">
+            <label>Planned vessel runs</label>
+            <input type="number" id="inv-runs" value="4" min="1" max="5" oninput="recalcInventory()">
+          </div>
+          <div class="input-group">
+            <label>Safety stock (weeks)</label>
+            <input type="number" id="inv-safety" value="2" min="1" max="4" oninput="recalcInventory()">
+          </div>
+        </div>
+
+        <div class="card" style="flex:1;">
+          <div class="section-title">Raw material inventory status</div>
+          <table>
+            <thead><tr>
+              <th>Material</th>
+              <th>Criticality</th>
+              <th style="cursor:pointer;">Current Stock ▼</th>
+              <th>Needed/wk</th>
+              <th>Safety Min</th>
+              <th>After This Week</th>
+              <th>Status</th>
+            </tr></thead>
+            <tbody id="invTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- WIP Buffers editor -->
+      <div class="card">
+        <div class="section-title">WIP buffer tracker — enter current levels</div>
+        <div class="bottom-grid">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:12px;">Buffer 1 — Pre-Vessel Gel Store</div>
+            <div class="input-group" style="margin-bottom:8px;">
+              <label>Current stock (gels)</label>
+              <input type="number" id="wip1" value="66" min="0" oninput="recalcWIP()">
+            </div>
+            <div style="font-size:11px;color:var(--mid);">Min: 66 · Max: 132 · Methanol environment</div>
+            <div style="margin-top:10px;font-size:13px;font-weight:600;" id="wip1-status"></div>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--danger);margin-bottom:12px;">Buffer 2 — Post-CPD Aerogel Store</div>
+            <div class="input-group" style="margin-bottom:8px;">
+              <label>Current stock (aerogels)</label>
+              <input type="number" id="wip2" value="54" min="0" oninput="recalcWIP()">
+            </div>
+            <div style="font-size:11px;color:var(--mid);">Min: 60 · Max: 180 · Controlled dry-room</div>
+            <div style="margin-top:10px;font-size:13px;font-weight:600;" id="wip2-status"></div>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--teal);margin-bottom:12px;">Buffer 3 — Composite WIP Store</div>
+            <div class="input-group" style="margin-bottom:8px;">
+              <label>Current stock (composites)</label>
+              <input type="number" id="wip3" value="72" min="0" oninput="recalcWIP()">
+            </div>
+            <div style="font-size:11px;color:var(--mid);">Min: 60 · Max: 240 · Standard warehouse</div>
+            <div style="margin-top:10px;font-size:13px;font-weight:600;" id="wip3-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ PAGE: KPI TRACKER ══════════ -->
+    <div class="page" id="page-kpi">
+      <div class="page-header">
+        <h2>KPI Tracker — Plant Manager</h2>
+        <p>Log daily production data — weekly totals and performance vs. targets auto-calculated</p>
+      </div>
+
+      <div class="row" style="margin-bottom:22px;">
+        <div class="card" style="flex:2;">
+          <div class="section-title">Weekly performance vs. targets</div>
+          <table>
+            <thead><tr><th>KPI</th><th>Weekly Target</th><th>Actual This Week</th><th>vs. Target</th><th>Status</th></tr></thead>
+            <tbody id="kpiTable"></tbody>
+          </table>
+        </div>
+        <div class="card-sm" style="flex:1;">
+          <div class="section-title">4-week trend</div>
+          <div class="chart-wrap" style="height:180px;"><canvas id="trendChart" role="img" aria-label="Line chart showing 4-week trend of aerogel output">Trend data over 4 weeks.</canvas></div>
+          <div style="margin-top:12px;">
+            <div class="section-title">Energy cost proxy</div>
+            <div style="font-size:22px;font-weight:600;font-family:'DM Mono',monospace;color:var(--navy);">84 <span style="font-size:12px;color:var(--mid);font-weight:400;">shift-hours</span></div>
+            <div style="font-size:11px;color:var(--mid);margin-top:4px;">Rated kW × shift hours per process area</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Daily log — enter values for each day</div>
+        <table>
+          <thead><tr><th>KPI</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Weekly Total</th></tr></thead>
+          <tbody id="dailyTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══════════ PAGE: LEAN ══════════ -->
+    <div class="page" id="page-lean">
+      <div class="page-header">
+        <h2>Lean Manufacturing Analysis</h2>
+        <p>Takt time, 7 wastes, and line balancing applied to AeroShield's operations</p>
+      </div>
+
+      <!-- Takt time -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="section-title">Takt time analysis</div>
+        <table>
+          <thead><tr><th>Metric</th><th>Waltham (Pilot)</th><th>Phase 1 (4 runs)</th><th>Phase 1.1 (5 runs)</th><th>ARPA-E Target</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Available time (min/week)</strong></td><td>10,080</td><td>10,080</td><td>10,080</td><td>10,080</td></tr>
+            <tr><td><strong>Weekly demand (aerogels)</strong></td><td>6</td><td>240</td><td>300</td><td>373</td></tr>
+            <tr><td><strong>Takt time (min/aerogel)</strong></td><td>1,680</td><td>42.0</td><td>33.6</td><td>27.0</td></tr>
+            <tr><td><strong>Vessel cycle time (min/unit)</strong></td><td>300</td><td>24.0</td><td>24.0</td><td>24.0</td></tr>
+            <tr><td><strong>System in balance?</strong></td><td><span class="status-ok">Yes</span></td><td><span class="status-ok">Yes</span></td><td><span class="status-ok">Yes</span></td><td><span class="status-alert">NO — gap</span></td></tr>
+          </tbody>
+        </table>
+        <div style="background:var(--navy);border-radius:8px;padding:14px;margin-top:14px;font-size:12px;color:rgba(255,255,255,.8);line-height:1.6;">
+          <strong style="color:var(--teal);">Insight:</strong> At Phase 1.1, vessel cycle time (24 min/unit) is below takt time (33.6 min/unit) — system is in balance. To reach the ARPA-E target of 373 aerogels/week, takt drops to 27.0 min/unit — still above vessel CT. The system CAN meet the target with ~6.2 total vessel runs/week — requiring a second vessel.
+        </div>
+      </div>
+
+      <!-- 7 Wastes -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="section-title">7 lean wastes — applied to AeroShield</div>
+        <table>
+          <thead><tr><th>Waste</th><th>AeroShield Example</th><th>Impact</th><th>Lean Solution</th><th>Priority</th></tr></thead>
+          <tbody id="wasteTable"></tbody>
+        </table>
+      </div>
+
+      <!-- Line balancing -->
+      <div class="card">
+        <div class="section-title">Line balancing — cycle time vs. takt time (Phase 1.1, takt = 33.6 min/unit)</div>
+        <div style="margin-bottom:16px;">
+          <div class="cap-legend" style="margin-bottom:10px;">
+            <span><span class="leg-dot" style="background:var(--blue);"></span>Cycle time</span>
+            <span><span class="leg-dot" style="background:var(--danger);"></span>Takt time limit</span>
+          </div>
+        </div>
+        <div id="lbChart"></div>
+      </div>
+    </div>
+
+    <!-- ══════════ PAGE: IMPLEMENTATION ══════════ -->
+    <div class="page" id="page-implementation">
+      <div class="page-header">
+        <h2>Implementation Plan</h2>
+        <p>Phased roadmap for capacity and scheduling optimization — Q3 2026 to Q2 2027</p>
+      </div>
+
+      <div class="row" style="margin-bottom:22px;align-items:flex-start;">
+        <div class="card" style="flex:2;">
+          <div class="section-title">Phased roadmap</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot" style="background:var(--blue);"></div>
+              <div class="tl-phase" style="color:var(--blue);">PHASE A — Q3 2026 · Immediate Wins · $0 CapEx</div>
+              <div class="tl-title">Define WIP Buffer Minimums</div>
+              <div class="tl-desc">Enforce 60-unit minimum at all 3 buffer points. Prevents downstream stoppages from batch failures.</div>
+              <div class="tl-cost" style="color:var(--teal);">Cost: $0 · Owner: Ops Manager</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:var(--blue);"></div>
+              <div class="tl-title">Add 5th Annealing Oven Cycle</div>
+              <div class="tl-desc">Schedule 5th oven cycle to match Phase 1.1 vessel output. Eliminates 60 aerogel/week output loss.</div>
+              <div class="tl-cost" style="color:var(--teal);">Cost: $0 · Owner: Ops Manager</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:var(--blue);"></div>
+              <div class="tl-title">Deploy Kanban Visual Boards + SPC Charts</div>
+              <div class="tl-desc">Install Kanban at all 3 WIP buffer points. Launch statistical process control at QC grading gates.</div>
+              <div class="tl-cost" style="color:var(--teal);">Cost: ~$700 · Owner: Ops Manager / QC Lead</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:var(--teal);"></div>
+              <div class="tl-phase" style="color:var(--teal);">PHASE B — Q4 2026 · Phase 1.1 Go-Live · $50K–$150K</div>
+              <div class="tl-title">Commission Cassette Molding System</div>
+              <div class="tl-desc">Upgrade from manual to semi-automated cassette molding. Reduces cycle time from 10.9 to ~10 min/gel. Already in design phase.</div>
+              <div class="tl-cost" style="color:var(--accent);">Cost: $50K–$150K · Owner: Engineering</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:var(--teal);"></div>
+              <div class="tl-title">Launch MTO/MTS Hybrid Strategy</div>
+              <div class="tl-desc">Pre-build standard aerogel sizes (Full Lite + Patio) into MTS buffer. Convert IGU assembly to MTO. Cuts effective customer lead time from 74h to &lt;24h for repeat orders.</div>
+              <div class="tl-cost" style="color:var(--teal);">Cost: $0 · Owner: Ops Manager</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:var(--teal);"></div>
+              <div class="tl-title">Cross-Train Staff + Preventive Maintenance Schedule</div>
+              <div class="tl-desc">Train molding staff on vessel loading for flex coverage. Define PM windows for vessel and oven — protects at 89% utilization.</div>
+              <div class="tl-cost" style="color:var(--teal);">Cost: ~$3K · Owner: HR / Engineering</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:var(--accent);"></div>
+              <div class="tl-phase" style="color:var(--accent);">PHASE C — Q1–Q2 2027 · Strategic Investment · $300K–$1M+</div>
+              <div class="tl-title">Procure Second 60" CPD Vessel</div>
+              <div class="tl-desc">Removes the binding constraint — enables 500+ aerogels/week. Issue RFQ in Q1, procure and install in Q1–Q2, commission Q2.</div>
+              <div class="tl-cost" style="color:var(--accent);">Cost: $300K–$1M+ · Owner: CEO / Engineering</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background:var(--accent);"></div>
+              <div class="tl-title">OEE System + Phase 2 Capacity Evaluation</div>
+              <div class="tl-desc">Deploy real-time OEE tracking on vessel, oven and composite line. Evaluate Phase 2 gap vs. 5,600 sqft/week ARPA-E target.</div>
+              <div class="tl-cost" style="color:var(--accent);">Cost: $10K–$30K · Owner: IT / CEO</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost summary -->
+        <div style="flex:1;display:flex;flex-direction:column;gap:12px;">
+          <div class="card-sm">
+            <div class="section-title">Cost summary</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;padding:8px;background:var(--green-lt);border-radius:8px;">
+                <span style="font-size:12px;color:var(--green);font-weight:500;">Phase A (Q3 2026)</span>
+                <span style="font-size:13px;font-weight:600;font-family:'DM Mono';color:var(--green);">~$700</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px;background:var(--blue-lt);border-radius:8px;">
+                <span style="font-size:12px;color:var(--blue);font-weight:500;">Phase B (Q4 2026)</span>
+                <span style="font-size:13px;font-weight:600;font-family:'DM Mono';color:var(--blue);">$53K–$153K</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px;background:var(--accent-lt);border-radius:8px;">
+                <span style="font-size:12px;color:#7A5200;font-weight:500;">Phase C (Q1–Q2 2027)</span>
+                <span style="font-size:13px;font-weight:600;font-family:'DM Mono';color:#7A5200;">$310K–$1.03M</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:10px;background:var(--navy);border-radius:8px;">
+                <span style="font-size:12px;color:rgba(255,255,255,.8);font-weight:600;">Total Investment</span>
+                <span style="font-size:13px;font-weight:600;font-family:'DM Mono';color:var(--teal);">$363K–$1.18M</span>
+              </div>
+              <div style="font-size:11px;color:var(--mid);padding:4px;">Funded from $14.5M ARPA-E SCALEUP grant</div>
+            </div>
+          </div>
+
+          <div class="card-sm">
+            <div class="section-title">Expected outcomes</div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;">
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--gray);padding-bottom:8px;">
+                <span style="color:var(--mid);">Current output</span><span style="font-weight:600;font-family:'DM Mono';">240 aerogels/wk</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--gray);padding-bottom:8px;">
+                <span style="color:var(--mid);">After Phase B</span><span style="font-weight:600;font-family:'DM Mono';color:var(--blue);">300 aerogels/wk</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--gray);padding-bottom:8px;">
+                <span style="color:var(--mid);">After Phase C</span><span style="font-weight:600;font-family:'DM Mono';color:var(--teal);">500+ aerogels/wk</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;">
+                <span style="color:var(--mid);">ARPA-E target</span><span style="font-weight:600;font-family:'DM Mono';color:var(--accent);">373 aerogels/wk</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</main>
+
+<script>
+// ── State ────────────────────────────────────────────────────────────────────
+const state = {
+  runs: 4, demand: 480, yieldRate: 90, moldStaff: 5,
+  invRuns: 4, invSafety: 2,
+  wip: [66, 54, 72],
+  invStock: [150, 200, 500, 120, 120, 30, 400, 200],
+};
+
+// ── Navigation ───────────────────────────────────────────────────────────────
+const pageTitles = {
+  dashboard: 'KPI Dashboard', capacity: 'Capacity & Scheduling Tool',
+  inventory: 'Inventory Management', kpi: 'KPI Tracker',
+  lean: 'Lean Analysis', implementation: 'Implementation Plan'
+};
+function goto(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick')?.includes(id)) n.classList.add('active');
+  });
+  document.getElementById('pageTitle').textContent = pageTitles[id];
+}
+
+// ── Charts ───────────────────────────────────────────────────────────────────
+let outputChartInst, iguChartInst, trendChartInst;
+
+function initCharts() {
+  outputChartInst = new Chart(document.getElementById('outputChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+      datasets: [
+        { label: 'Actual', data: [240,240,240,300], backgroundColor: '#2B6CB8' },
+        { label: 'Target', data: [300,300,300,300], type: 'line', borderColor: '#E53E3E', borderWidth: 2, borderDash: [5,5], pointRadius: 0, fill: false, backgroundColor: 'transparent' }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: 11 } } }, y: { grid: { color: '#E8EEF5' }, ticks: { font: { size: 11 } }, min: 0, max: 360 } } }
+  });
+
+  iguChartInst = new Chart(document.getElementById('iguChart'), {
+    type: 'bar',
+    data: { labels: ['This week'],
+      datasets: [
+        { label: 'Completed', data: [480], backgroundColor: '#3DAB8E' },
+        { label: 'Gap', data: [120], backgroundColor: '#E8EEF5', borderColor: '#D0D8E8', borderWidth: 1 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+      scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: '#E8EEF5' }, min: 0, max: 700 } } }
+  });
+
+  trendChartInst = new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels: ['W1', 'W2', 'W3', 'W4'],
+      datasets: [
+        { label: 'Aerogels', data: [240,240,240,300], borderColor: '#2B6CB8', backgroundColor: 'rgba(43,108,184,.1)', fill: true, tension: 0.3, pointBackgroundColor: '#2B6CB8' },
+        { label: 'Target', data: [300,300,300,300], borderColor: '#E53E3E', borderDash: [4,4], pointRadius: 0, fill: false }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: 10 } } }, y: { grid: { color: '#E8EEF5' }, ticks: { font: { size: 10 } }, min: 180, max: 360 } }
+    }
+  });
+}
+
+// ── Capacity Calculation ─────────────────────────────────────────────────────
+function recalcCapacity() {
+  const runs = parseInt(document.getElementById('runs').value) || 4;
+  const demand = parseInt(document.getElementById('demand').value) || 480;
+  const yr = parseInt(document.getElementById('yieldRate').value) || 90;
+  const staff = parseInt(document.getElementById('moldStaff').value) || 5;
+
+  const aerogels = runs * 60;
+  const goodAerogels = Math.round(aerogels * yr / 100);
+  const igus = goodAerogels * 2;
+  const metDemand = igus >= demand;
+  const arpa = Math.round(aerogels * 15 / 5600 * 100);
+
+  document.getElementById('d-aerogels').textContent = aerogels;
+  document.getElementById('d-igus').textContent = igus;
+  document.getElementById('d-util').textContent = Math.round(runs * 30 / 168 * 100) + '%';
+  document.getElementById('d-yield').textContent = yr + '%';
+  document.getElementById('d-scrap').textContent = aerogels - goodAerogels;
+  document.getElementById('d-molding').textContent = runs * 66;
+  document.getElementById('d-fulfillment').textContent = Math.round(igus / demand * 100) + '%';
+  document.getElementById('d-energy').textContent = runs * 21;
+  document.getElementById('c-igus').textContent = igus;
+  const dm = document.getElementById('c-demand-met');
+  dm.textContent = metDemand ? 'YES ✓' : 'NO ✗';
+  dm.style.color = metDemand ? 'var(--green)' : 'var(--danger)';
+  document.getElementById('c-arpa').textContent = arpa + '%';
+
+  const alertBox = document.getElementById('c-alert-box');
+  const alertText = document.getElementById('c-alert-text');
+  const issues = [];
+  if (runs > 5) issues.push('Vessel runs exceed maximum of 5/week.');
+  if (!metDemand) issues.push(`Output (${igus} IGUs) below demand (${demand} IGUs) — gap of ${demand - igus} IGUs.`);
+  if (staff < 4) issues.push('Molding understaffed — minimum 4 people required for parallel casting.');
+  if (runs === 5) issues.push('Phase 1.1 mode: monitor annealing oven — may need 5th cycle.');
+
+  if (issues.length === 0) {
+    alertBox.style.background = 'var(--green-lt)';
+    alertText.style.color = 'var(--green)';
+    alertText.textContent = '✓ All systems within capacity for this configuration.';
+  } else {
+    alertBox.style.background = 'var(--danger-lt)';
+    alertText.style.color = 'var(--danger)';
+    alertText.textContent = '⚠ ' + issues.join(' ');
+  }
+
+  // Rebuild capacity table
+  const tbody = document.getElementById('capTable');
+  const rows = [
+    { name: 'Gel Molding', design: (staff > 4 ? 330 : 264) + ' gels/wk', effective: Math.round(runs * 66 * 1.1) + ' gels/wk', actual: runs * 66 + ' gels/wk', util: Math.round(runs * 66 / 330 * 100), eff: 100, bn: false },
+    { name: 'Vessel (CPD) ★', design: Math.round(168/30*60) + ' aerogels/wk', effective: runs * 60 + ' aerogels/wk', actual: aerogels + ' aerogels/wk', util: Math.round(runs * 30 / 168 * 100), eff: 100, bn: true },
+    { name: 'Quality Grading', design: '504 batches/wk', effective: runs * 5 + ' batches/wk', actual: runs + ' batches/wk', util: Math.round(runs * 2 / 168 * 100), eff: Math.round(runs / (runs * 5) * 100), bn: false },
+    { name: 'Annealing Oven', design: '7 cycles/wk', effective: (runs + 1) + ' cycles/wk', actual: runs + ' cycles/wk', util: Math.round(runs * 22 / 168 * 100), eff: Math.round(runs / (runs + 1) * 100), bn: false, monitor: runs >= 5 },
+    { name: 'Composite + IGU', design: '480+ units/wk', effective: runs * 60 + ' units/wk', actual: goodAerogels + ' units/wk', util: Math.round(goodAerogels / 480 * 100), eff: Math.round(goodAerogels / (runs * 60) * 100), bn: false },
+  ];
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td><strong style="color:${r.bn ? 'var(--danger)' : r.monitor ? 'var(--accent)' : 'var(--navy)'}">${r.name}</strong></td>
+      <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--mid);">${r.design}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:12px;">${r.effective}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:12px;font-weight:600;">${r.actual}</td>
+      <td><span style="font-family:'DM Mono';font-size:13px;font-weight:600;color:${r.util < 50 ? 'var(--mid)' : r.util > 85 ? 'var(--danger)' : 'var(--blue)'}">${r.util}%</span></td>
+      <td><span style="font-family:'DM Mono';font-size:13px;font-weight:600;color:${r.eff >= 90 ? 'var(--green)' : 'var(--accent)'}">${r.eff}%</span></td>
+      <td>${r.bn ? '<span class="status-bn">YES ★</span>' : r.monitor ? '<span class="status-warn">Monitor</span>' : '<span class="status-ok">No</span>'}</td>
+    </tr>`).join('');
+}
+
+function setScenario(s) {
+  const scenarios = {
+    base:  { runs: 4, demand: 480, yieldRate: 90, moldStaff: 5 },
+    p11:   { runs: 5, demand: 600, yieldRate: 90, moldStaff: 5 },
+    spike: { runs: 4, demand: 700, yieldRate: 90, moldStaff: 5 },
+    down:  { runs: 3, demand: 480, yieldRate: 90, moldStaff: 5 },
+    staff: { runs: 4, demand: 480, yieldRate: 90, moldStaff: 3 },
+  };
+  const sc = scenarios[s];
+  document.getElementById('runs').value = sc.runs;
+  document.getElementById('demand').value = sc.demand;
+  document.getElementById('yieldRate').value = sc.yieldRate;
+  document.getElementById('moldStaff').value = sc.moldStaff;
+  recalcCapacity();
+}
+
+// ── Inventory Calculation ────────────────────────────────────────────────────
+const materials = [
+  { name: 'Chemicals (TEOS, solvents)', crit: 'CRITICAL', usagePerRun: 35 },
+  { name: 'Methanol (solvent exchange)', crit: 'CRITICAL', usagePerRun: 50 },
+  { name: 'Argon Gas (cubic ft)', crit: 'HIGH', usagePerRun: 80 },
+  { name: 'Float Glass — Glass 1 (sheets)', crit: 'HIGH', usagePerRun: 60 },
+  { name: 'Float Glass — Glass 2 (sheets)', crit: 'HIGH', usagePerRun: 60 },
+  { name: 'Adhesive / Sealant (kg)', crit: 'MEDIUM', usagePerRun: 5 },
+  { name: 'Spacers (units)', crit: 'MEDIUM', usagePerRun: 65 },
+  { name: 'Packaging (sets)', crit: 'LOW', usagePerRun: 50 },
+];
+
+const stockInputs = [150, 200, 500, 120, 120, 30, 400, 200];
+
+function recalcInventory() {
+  const runs = parseInt(document.getElementById('inv-runs').value) || 4;
+  const safety = parseInt(document.getElementById('inv-safety').value) || 2;
+
+  const tbody = document.getElementById('invTable');
+  tbody.innerHTML = materials.map((m, i) => {
+    const inputId = `stock-${i}`;
+    const stock = parseInt(document.getElementById(inputId)?.value ?? stockInputs[i]) || stockInputs[i];
+    const needed = runs * m.usagePerRun;
+    const safetyMin = safety * needed;
+    const after = stock - needed;
+    const status = after >= safetyMin ? 'ok' : after >= 0 ? 'low' : 'critical';
+    const reorder = status !== 'ok' ? Math.max(0, safetyMin - after + needed) : 0;
+    const critColor = m.crit === 'CRITICAL' ? 'var(--danger)' : m.crit === 'HIGH' ? 'var(--accent)' : 'var(--mid)';
+    return `<tr>
+      <td><strong>${m.name}</strong></td>
+      <td><span style="font-size:11px;font-weight:600;color:${critColor}">${m.crit}</span></td>
+      <td><input type="number" id="${inputId}" value="${stock}" style="width:80px;padding:4px 8px;font-size:12px;" oninput="recalcInventory()"></td>
+      <td style="font-family:'DM Mono';font-size:12px;">${needed}</td>
+      <td style="font-family:'DM Mono';font-size:12px;">${safetyMin}</td>
+      <td style="font-family:'DM Mono';font-size:12px;font-weight:600;color:${after < 0 ? 'var(--danger)' : 'var(--navy)'}">${after}</td>
+      <td><span class="inv-status inv-${status === 'ok' ? 'ok' : status === 'low' ? 'low' : 'critical'}">${status === 'ok' ? 'OK' : status === 'low' ? 'LOW STOCK' : 'ORDER NOW'}</span>${reorder > 0 ? `<br><span style="font-size:10px;color:var(--mid);">Order: ${reorder}</span>` : ''}</td>
+    </tr>`;
+  }).join('');
+}
+
+function recalcWIP() {
+  const wips = [
+    { id: 'wip1', min: 66, max: 132, color: 'var(--blue)' },
+    { id: 'wip2', min: 60, max: 180, color: 'var(--danger)' },
+    { id: 'wip3', min: 60, max: 240, color: 'var(--teal)' },
+  ];
+  wips.forEach(({ id, min, max, color }) => {
+    const val = parseInt(document.getElementById(id).value) || 0;
+    const statusEl = document.getElementById(id + '-status');
+    if (val < min) { statusEl.textContent = '⚠ Below minimum — restock required'; statusEl.style.color = 'var(--danger)'; }
+    else if (val > max) { statusEl.textContent = '⚠ Above maximum — slow production'; statusEl.style.color = 'var(--accent)'; }
+    else { statusEl.textContent = '✓ Within acceptable range'; statusEl.style.color = 'var(--green)'; }
+  });
+}
+
+// ── KPI Table ────────────────────────────────────────────────────────────────
+function buildKPITable() {
+  const kpis = [
+    { name: 'Aerogels produced', target: '300 units', actual: '240', vs: '80%', status: 'warn' },
+    { name: 'IGUs completed', target: '600 IGUs', actual: '480', vs: '80%', status: 'warn' },
+    { name: 'Vessel runs completed', target: '4 runs', actual: '4', vs: '100%', status: 'ok' },
+    { name: 'Yield rate (post-vessel)', target: '≥ 90%', actual: '90%', vs: '100%', status: 'ok' },
+    { name: 'Scrap / rework count', target: '< 24 units', actual: '6', vs: 'OK', status: 'ok' },
+    { name: 'Avg WIP Buffer 1 (pre-vessel)', target: '≥ 66 units', actual: '66', vs: 'OK', status: 'ok' },
+    { name: 'Avg WIP Buffer 2 (post-vessel)', target: '≥ 60 units', actual: '54', vs: 'BELOW MIN', status: 'alert' },
+    { name: 'Avg WIP Buffer 3 (composite)', target: '≥ 60 units', actual: '72', vs: 'OK', status: 'ok' },
+    { name: 'Energy proxy (shift-hours)', target: '—', actual: '84', vs: 'Track trend', status: 'ok' },
+  ];
+  document.getElementById('kpiTable').innerHTML = kpis.map(k => `
+    <tr>
+      <td><strong>${k.name}</strong></td>
+      <td style="color:var(--mid);font-size:12px;">${k.target}</td>
+      <td style="font-family:'DM Mono';font-weight:600;">${k.actual}</td>
+      <td style="font-family:'DM Mono';font-size:12px;">${k.vs}</td>
+      <td><span class="status-${k.status === 'ok' ? 'ok' : k.status === 'warn' ? 'warn' : 'alert'}">${k.status === 'ok' ? 'On target' : k.status === 'warn' ? 'Near target' : 'Alert'}</span></td>
+    </tr>`).join('');
+
+  const dailyKPIs = [
+    { name: 'Aerogels produced', vals: [0,0,0,60,0] },
+    { name: 'IGUs completed', vals: [0,0,0,0,96] },
+    { name: 'Vessel run completed (1=Yes)', vals: [0,0,1,0,0] },
+    { name: 'Aerogels passed QC', vals: [0,0,0,54,0] },
+    { name: 'Scrap / rework count', vals: [0,0,0,6,0] },
+    { name: 'Molding gels cast', vals: [66,0,0,0,66] },
+    { name: 'Energy proxy (shift-hrs)', vals: [12,0,30,30,12] },
+  ];
+  document.getElementById('dailyTable').innerHTML = dailyKPIs.map(k => {
+    const total = k.vals.reduce((a,b) => a+b, 0);
+    return `<tr>
+      <td><strong>${k.name}</strong></td>
+      ${k.vals.map(v => `<td><input type="number" value="${v}" style="width:50px;padding:3px 6px;font-size:12px;text-align:center;" oninput="this.parentElement.parentElement.lastElementChild.textContent=Array.from(this.parentElement.parentElement.querySelectorAll('input')).reduce((a,b)=>a+(parseInt(b.value)||0),0)"></td>`).join('')}
+      <td style="font-family:'DM Mono';font-weight:600;color:var(--teal);">${total}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Lean Analysis ────────────────────────────────────────────────────────────
+function buildLean() {
+  const wastes = [
+    { w: '1. Overproduction', ex: 'Molding produces 66 gels/shift even when vessel not ready', imp: 'Medium', sol: 'Synchronize molding to vessel schedule — produce to demand', pri: 'med' },
+    { w: '2. Waiting', ex: 'Post-vessel gels wait for oven; oven gels wait for composite team', imp: 'High', sol: 'Define max WIP wait times — stage oven loading to minimize idle time', pri: 'high' },
+    { w: '3. Transport', ex: 'Multiple transfers: mold → methanol → vessel → oven → dry room → laser', imp: 'Medium', sol: 'Minimize handling steps — consolidate transfer points in facility layout', pri: 'med' },
+    { w: '4. Over-processing', ex: 'Double QC grading (post-vessel + post-oven) adds 2–4h per batch', imp: 'Low', sol: 'Assess whether post-oven grading can be reduced if post-vessel is robust', pri: 'low' },
+    { w: '5. Excess WIP', ex: 'No defined max for WIP buffers — risk of aerogel degradation', imp: 'High', sol: 'Define MAX buffer levels — Kanban stop signals at each buffer point', pri: 'high' },
+    { w: '6. Motion', ex: '4–5 molding staff manually handling gels one by one — repetitive', imp: 'Medium', sol: 'Cassette molding system reduces manual handling — semi-automated', pri: 'med' },
+    { w: '7. Defects / Scrap', ex: '~10% aerogel yield loss per vessel run — 6 units scrapped per 60-unit batch', imp: 'High', sol: 'SPC charts at QC gates — track and reduce yield loss systematically', pri: 'high' },
+  ];
+  document.getElementById('wasteTable').innerHTML = wastes.map(w => `
+    <tr>
+      <td><strong>${w.w}</strong></td>
+      <td style="font-size:12px;">${w.ex}</td>
+      <td style="font-size:12px;color:${w.imp==='High'?'var(--danger)':w.imp==='Medium'?'#7A5200':'var(--mid)'};">${w.imp}</td>
+      <td style="font-size:12px;">${w.sol}</td>
+      <td><span class="priority-${w.pri}">${w.pri==='high'?'HIGH':w.pri==='med'?'Medium':'Low'}</span></td>
+    </tr>`).join('');
+
+  // Line balance bars
+  const procs = [
+    { name: 'Gel Molding', ct: 10.9 }, { name: 'Vessel (CPD) ★', ct: 24.0 },
+    { name: 'QC Grading', ct: 2.0 }, { name: 'Annealing Oven', ct: 22.0 },
+    { name: 'Composite + Laser', ct: 7.0 }, { name: 'IGU Assembly', ct: 7.0 },
+  ];
+  const takt = 33.6;
+  document.getElementById('lbChart').innerHTML = procs.map(p => {
+    const pct = Math.min(p.ct / takt * 100, 100);
+    const taktPct = 100;
+    const isBn = p.ct > takt * 0.9;
+    return `<div class="cap-row">
+      <div class="cap-header">
+        <span style="font-size:12px;font-weight:500;color:${p.name.includes('★')?'var(--accent)':'var(--navy)'}">${p.name}</span>
+        <span style="font-size:12px;font-family:'DM Mono';color:${isBn?'var(--danger)':'var(--navy)'}">${p.ct} min/unit</span>
+      </div>
+      <div style="background:var(--gray);border-radius:6px;height:16px;position:relative;">
+        <div style="width:${pct}%;background:${isBn?'var(--danger)':'var(--blue)'};border-radius:6px;height:16px;display:flex;align-items:center;padding-left:8px;font-size:10px;color:white;font-weight:500;">${p.ct} min</div>
+        <div style="position:absolute;top:-4px;left:${taktPct}%;width:2px;height:24px;background:var(--danger);border-radius:1px;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--mid);margin-top:3px;">Takt: 33.6 min · ${p.ct <= takt ? 'Within takt — OK' : 'Exceeds takt — bottleneck'}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  initCharts();
+  recalcCapacity();
+  recalcInventory();
+  recalcWIP();
+  buildKPITable();
+  buildLean();
+});
+</script>
+</body>
+</html>

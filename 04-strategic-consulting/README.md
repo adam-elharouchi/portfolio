@@ -5,7 +5,7 @@ work delivered during my Financial Analyst internship at Brunk Industries.
 
 | Project | Focus | The core of it |
 |---|---|---|
-| [AeroShield operations capstone](aeroshield-operations-capstone/) | Operations · throughput | Cycle-time analysis and bottleneck identification for an advanced-materials manufacturer scaling from pilot to industrial production |
+| [AeroShield operations capstone](aeroshield-operations-capstone/) **· [live demo](https://adam-elharouchi.github.io/portfolio/04-strategic-consulting/aeroshield-operations-capstone/platform.html)** | Operations · throughput | A working six-module operations platform delivered to the client, with cycle-time and bottleneck analysis behind it |
 | [Gourmet Wafers operations strategy](gourmet-wafers-operations/) | Operations · forecasting | A 1.97 December seasonality index makes peak demand 3,842 boxes against a 1,950 average — planning to the average would have under-built capacity by half |
 | [Brunk Industries OPS scoring](brunk-industries-ops-scoring/) **· internship** | Operations · metric design | A composite part-level score weighting returns 5000x against scrap's 1.5x, validated against Brunk's own metric and used to sort the portfolio into stars, cash cows, question marks and dogs |
 | [NexTech performance transformation](nextech-performance-transformation/) | Strategy · balanced scorecard | The plateau is a crisis of translation, not ambition; the measurement system is selecting against the stated strategy |

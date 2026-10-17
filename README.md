@@ -66,6 +66,7 @@ to the gradebook automatically.
 | [Amazon (AMZN) equity research](02-finance/amazon-investment-proposal/) | DCF / FCFF, 33-sheet model | **BUY**, $292.99 target (+29.5%), bear case $212.05 |
 | [Coca-Cola (KO) equity analysis](02-finance/coca-cola-equity-analysis/) | Comparables + DDM + market sentiment | Fairly valued; DDM outlier explained by model sensitivity |
 | [BigTech quarterly analysis](02-finance/bigtech-quarterly-analysis/) | Three-statement analysis, cohort metrics | Nine quarters of financials, churn, and FY2024 projections |
+| [Portfolio risk management](02-finance/portfolio-risk-management/) | Portfolio management, hedging | Three holdings exposed to one geopolitical shock in opposite directions, each with a specific defensive instrument |
 
 **Skills** — DCF / FCFF · WACC & CAPM · DDM · comparable company analysis · multiples ·
 scenario & sensitivity analysis · US GAAP (ASC 606, 326, 330, 250, 360, 842, 985-20) ·
@@ -99,7 +100,7 @@ SQL · regression · classification · clustering · PCA · feature selection ·
 
 | Project | Focus | The core of it |
 |---|---|---|
-| [AeroShield operations capstone](04-strategic-consulting/aeroshield-operations-capstone/) | Operations · throughput | Cycle-time analysis and bottleneck identification for an advanced-materials manufacturer scaling from pilot to industrial production |
+| [AeroShield operations capstone](04-strategic-consulting/aeroshield-operations-capstone/) **· [live demo](https://adam-elharouchi.github.io/portfolio/04-strategic-consulting/aeroshield-operations-capstone/platform.html)** | Operations · throughput | A working six-module operations platform delivered to the client, with cycle-time and bottleneck analysis behind it |
 | [Gourmet Wafers operations strategy](04-strategic-consulting/gourmet-wafers-operations/) | Operations · forecasting | A 1.97 December seasonality index makes peak demand 3,842 boxes against a 1,950 average — planning to the average would have under-built capacity by half |
 | [Brunk Industries OPS scoring](04-strategic-consulting/brunk-industries-ops-scoring/) **· internship** | Operations · metric design | A composite part-level score weighting returns 5000x against scrap's 1.5x, used to sort the portfolio into stars, cash cows, question marks and dogs |
 | [NexTech performance transformation](04-strategic-consulting/nextech-performance-transformation/) | Strategy · balanced scorecard | The plateau is a crisis of translation, not ambition; the measurement system is selecting against the stated strategy |
@@ -131,8 +132,14 @@ Smaller builds outside AnalytIQ.
 
 ## Leadership
 
+**[Browse the section →](06-leadership/)**
+
 President, Hult Competition Hub · President, HULT FC · Head of Volunteers, HBS VCPE ·
 Director of Social & Professional Events, Boston Arab Society
+
+Two of those roles came with a budget. The [club finance workbooks](06-leadership/club-finance/)
+cover estimated vs. actual across a HULT FC season and per-event P&L plus bank reconciliation
+for the Boston Arab Society.
 
 ---
 

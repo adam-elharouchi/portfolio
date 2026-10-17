@@ -1,7 +1,7 @@
 # Finance
 
-Four projects: a forensic accounting investigation, two equity valuations, and a quarterly
-financial analysis. The valuations ship with their underlying Excel models.
+Five projects: a forensic accounting investigation, two equity valuations, a quarterly
+financial analysis, and a portfolio risk review. The valuations ship with their underlying Excel models.
 
 | Project | Method | Conclusion |
 |---|---|---|
@@ -9,6 +9,7 @@ financial analysis. The valuations ship with their underlying Excel models.
 | [Amazon (AMZN) equity research](amazon-investment-proposal/) | DCF / FCFF, 33-sheet model | BUY, $292.99 target, +29.5% |
 | [Coca-Cola (KO) equity analysis](coca-cola-equity-analysis/) | Comparables + DDM + sentiment | Fairly valued, modest upside |
 | [BigTech quarterly analysis](bigtech-quarterly-analysis/) | Three-statement analysis, cohort metrics | Nine quarters of financials, churn, and FY2024 projections |
+| [Portfolio risk management](portfolio-risk-management/) | Portfolio management, hedging | Three holdings exposed to one geopolitical shock in opposite directions, each with a specific defensive instrument |
 
 ## Skills
 
