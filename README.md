@@ -2,7 +2,7 @@
 
 # Adam El Harouchi
 
-**Finance · Business Analytics · Software**
+**Finance · Business Analytics · Strategic Consulting**
 
 BBA Finance & Business Analytics (STEM), Hult International Business School, Boston
 
@@ -18,10 +18,11 @@ BBA Finance & Business Analytics (STEM), Hult International Business School, Bos
 ---
 
 I work at the intersection of financial analysis and applied data science — valuation and
-forensic accounting on one side, machine learning and production software on the other.
+forensic accounting on one side, machine learning and strategy work on the other.
 
-**Four sections:** [AnalytIQ](#analytiq) · [Finance](#finance) ·
-[Business Analytics](#business-analytics) · [Software & Operations](#software--operations)
+**Sections:** [AnalytIQ](#analytiq) · [Finance](#finance) ·
+[Business Analytics](#business-analytics) · [Strategic Consulting](#strategic-consulting) ·
+[Software](#software) · [Leadership](#leadership)
 
 Every project has a write-up covering the problem, the method, the measured result, and the
 limitations.
@@ -91,18 +92,38 @@ SQL · regression · classification · clustering · PCA · feature selection ·
 
 ---
 
-## Software & Operations
+## Strategic Consulting
 
-**[Browse the section →](04-software-operations/)**
+**[Browse the section →](04-strategic-consulting/)**
 
-| Project | Stack / focus |
+| Project | Focus | The core of it |
+|---|---|---|
+| [AeroShield operations capstone](04-strategic-consulting/aeroshield-operations-capstone/) | Operations · throughput | Cycle-time analysis and bottleneck identification for an advanced-materials manufacturer scaling from pilot to industrial production |
+| [Gourmet Wafers operations strategy](04-strategic-consulting/gourmet-wafers-operations/) | Operations · forecasting | A 1.97 December seasonality index makes peak demand 3,842 boxes against a 1,950 average — planning to the average would have under-built capacity by half |
+| [NexTech performance transformation](04-strategic-consulting/nextech-performance-transformation/) | Strategy · balanced scorecard | The plateau is a crisis of translation, not ambition; the measurement system is selecting against the stated strategy |
+| [Layers brand strategy](04-strategic-consulting/layers-brand-strategy/) | Brand · live client challenge | People want to grow but don't know how to begin — so the job is making the first step concrete |
+| [Pizza chain market expansion](04-strategic-consulting/pizza-chain-market-expansion/) | Strategy · growth | Strategic vision and expansion path for a small local operator |
+| [Café Nero customer experience](04-strategic-consulting/cafe-nero-customer-experience/) | Research · JTBD | Structured field observation in Boston; succeeds at the functional job, with service bottlenecks capping the relationship at convenience |
+
+**Skills** — strategic vision setting · competitive positioning · market entry & expansion ·
+balanced scorecard · demand forecasting with seasonal indexing · capacity planning · reorder
+point & safety stock · 4Vs analysis · process mapping · theory-of-constraints reasoning ·
+Jobs-to-Be-Done · observational research
+
+---
+
+## Software
+
+**[Browse the section →](05-software/)**
+
+Smaller builds outside AnalytIQ.
+
+| Project | Stack |
 |---|---|
-| [Personal finance dashboard](04-software-operations/budgeting-app/) | Next.js 15, TypeScript, Plaid API, Zustand |
-| [Voice interview simulator](04-software-operations/interview-simulator/) | Node.js, Express, Anthropic API, Web Speech API |
-| [AeroShield operations capstone](04-software-operations/aeroshield-operations/) | Throughput analysis, bottleneck identification, capacity planning |
+| [Personal finance dashboard](05-software/budgeting-app/) | Next.js 15, TypeScript, Plaid API, Zustand |
+| [Voice interview simulator](05-software/interview-simulator/) | Node.js, Express, Anthropic API, Web Speech API |
 
-**Skills** — TypeScript · React / Next.js · Node.js · REST API integration · server-side secret
-handling · 4Vs operational analysis · process mapping · theory-of-constraints reasoning
+**Skills** — TypeScript · React / Next.js · Node.js · REST API integration · server-side secret handling
 
 ---
 
@@ -115,7 +136,7 @@ Director of Social & Professional Events, Boston Arab Society
 
 <div align="center">
 
-**Open to roles in financial analysis, business analytics, and data science.**
+**Open to roles in financial analysis, business analytics, and consulting.**
 
 [Finance Resume](resume/Adam-El-Harouchi-Resume-Finance.pdf) ·
 [Business Analytics Resume](resume/Adam-El-Harouchi-Resume-Business-Analytics.pdf) ·
