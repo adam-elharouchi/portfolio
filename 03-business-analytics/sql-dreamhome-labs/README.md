@@ -12,10 +12,10 @@ Each lab is my own `.sql` file, runnable top to bottom against a DreamHome SQLit
 
 | Lab | Statements | Focus | Techniques |
 |---|---|---|---|
-| [Lab 2](dreamhome-labs/lab2_queries.sql) | 32 | Aggregation and grouping | `COUNT`, `SUM`, `AVG`, `MAX`, `MIN`, `GROUP BY`, `HAVING`, `ORDER BY` |
-| [Lab 3](dreamhome-labs/lab3_queries.sql) | 33 | Multi-table joins and set operations | `INNER JOIN`, `LEFT JOIN`, `UNION`, aggregation across joins |
-| [Lab 4](dreamhome-labs/lab4_queries.sql) | 43 | Complex retrieval and sorting | layered joins, multi-key `ORDER BY`, grouped aggregates |
-| [Lab 5](dreamhome-labs/lab5_queries.sql) | 29 | Subqueries and DDL | `IN`, `EXISTS`, correlated subqueries, `CREATE TABLE` |
+| [Lab 2](lab2_queries.sql) | 32 | Aggregation and grouping | `COUNT`, `SUM`, `AVG`, `MAX`, `MIN`, `GROUP BY`, `HAVING`, `ORDER BY` |
+| [Lab 3](lab3_queries.sql) | 33 | Multi-table joins and set operations | `INNER JOIN`, `LEFT JOIN`, `UNION`, aggregation across joins |
+| [Lab 4](lab4_queries.sql) | 43 | Complex retrieval and sorting | layered joins, multi-key `ORDER BY`, grouped aggregates |
+| [Lab 5](lab5_queries.sql) | 29 | Subqueries and DDL | `IN`, `EXISTS`, correlated subqueries, `CREATE TABLE` |
 
 ## What the progression shows
 

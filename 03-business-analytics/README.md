@@ -1,7 +1,9 @@
-# Business Analytics & Machine Learning
+# Business Analytics
 
-Seven projects in Python. Each folder has a write-up covering the problem, the method, the
-measured result, and what I'd do differently.
+Seven machine-learning projects in Python, plus 137 SQL queries. Each folder has a write-up
+covering the problem, the method, the measured result, and what I'd do differently.
+
+## Machine learning
 
 | Project | Type | Headline result |
 |---|---|---|
@@ -13,9 +15,16 @@ measured result, and what I'd do differently.
 | [Airbnb Vienna pricing](airbnb-vienna-regression/) | Regression (SEMMA) | R² 0.13 on 8,302 listings — honestly weak |
 | [PCA on handwritten digits](pca-digit-recognition/) | Dimensionality reduction | Component loadings mapped back to pixel space |
 
+## SQL
+
+| | |
+|---|---|
+| [DreamHome database labs](sql-dreamhome-labs/) | 137 queries across 4 progressive labs — aggregation and `HAVING`, inner and outer joins across 5+ tables, set operations, correlated subqueries, DDL |
+
 ## Toolkit
+
 `pandas` · `numpy` · `scikit-learn` · `LightGBM` · `imbalanced-learn` (SMOTE) · `matplotlib` ·
-`seaborn` · `scipy`
+`seaborn` · `scipy` · SQL
 
 **Methods:** linear and logistic regression · decision trees · random forests · gradient boosting ·
 SVM/SVR · KNN · K-Means · PCA · feature selection (KBest, LASSO) · hyperparameter tuning
