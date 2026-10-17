@@ -100,6 +100,7 @@ SQL · regression · classification · clustering · PCA · feature selection ·
 |---|---|---|
 | [AeroShield operations capstone](04-strategic-consulting/aeroshield-operations-capstone/) | Operations · throughput | Cycle-time analysis and bottleneck identification for an advanced-materials manufacturer scaling from pilot to industrial production |
 | [Gourmet Wafers operations strategy](04-strategic-consulting/gourmet-wafers-operations/) | Operations · forecasting | A 1.97 December seasonality index makes peak demand 3,842 boxes against a 1,950 average — planning to the average would have under-built capacity by half |
+| [Brunk Industries OPS scoring](04-strategic-consulting/brunk-industries-ops-scoring/) **· internship** | Operations · metric design | A composite part-level score weighting returns 5000x against scrap's 1.5x, used to sort the portfolio into stars, cash cows, question marks and dogs |
 | [NexTech performance transformation](04-strategic-consulting/nextech-performance-transformation/) | Strategy · balanced scorecard | The plateau is a crisis of translation, not ambition; the measurement system is selecting against the stated strategy |
 | [Layers brand strategy](04-strategic-consulting/layers-brand-strategy/) | Brand · live client challenge | People want to grow but don't know how to begin — so the job is making the first step concrete |
 | [Pizza chain market expansion](04-strategic-consulting/pizza-chain-market-expansion/) | Strategy · growth | Strategic vision and expansion path for a small local operator |
