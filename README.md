@@ -63,8 +63,9 @@ to the gradebook automatically.
 | Project | Method | Conclusion |
 |---|---|---|
 | [TechnoGlobal forensic accounting](02-finance/technoglobal-forensic-accounting/) | US GAAP review, full restatement | 8 red flags, 3 fraudulent; net income overstated **$141M**; uncovered a hidden debt-covenant breach |
-| [Amazon (AMZN) equity research](02-finance/amazon-investment-proposal/) | DCF / FCFF bottom-up, scenarios | **BUY**, $292.99 target (+29.5%), bear case $212.05 |
+| [Amazon (AMZN) equity research](02-finance/amazon-investment-proposal/) | DCF / FCFF, 33-sheet model | **BUY**, $292.99 target (+29.5%), bear case $212.05 |
 | [Coca-Cola (KO) equity analysis](02-finance/coca-cola-equity-analysis/) | Comparables + DDM + market sentiment | Fairly valued; DDM outlier explained by model sensitivity |
+| [BigTech quarterly analysis](02-finance/bigtech-quarterly-analysis/) | Three-statement analysis, cohort metrics | Nine quarters of financials, churn, and FY2024 projections |
 
 **Skills** — DCF / FCFF · WACC & CAPM · DDM · comparable company analysis · multiples ·
 scenario & sensitivity analysis · US GAAP (ASC 606, 326, 330, 250, 360, 842, 985-20) ·

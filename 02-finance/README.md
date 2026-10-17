@@ -1,12 +1,14 @@
 # Finance
 
-Three analyses: a forensic accounting investigation and two equity valuations.
+Four projects: a forensic accounting investigation, two equity valuations, and a quarterly
+financial analysis. The valuations ship with their underlying Excel models.
 
 | Project | Method | Conclusion |
 |---|---|---|
 | [TechnoGlobal forensic accounting](technoglobal-forensic-accounting/) | US GAAP review, restatement | 8 red flags; net income overstated $141M; covenant breach uncovered |
-| [Amazon (AMZN) equity research](amazon-investment-proposal/) | DCF / FCFF, scenarios | BUY, $292.99 target, +29.5% |
+| [Amazon (AMZN) equity research](amazon-investment-proposal/) | DCF / FCFF, 33-sheet model | BUY, $292.99 target, +29.5% |
 | [Coca-Cola (KO) equity analysis](coca-cola-equity-analysis/) | Comparables + DDM + sentiment | Fairly valued, modest upside |
+| [BigTech quarterly analysis](bigtech-quarterly-analysis/) | Three-statement analysis, cohort metrics | Nine quarters of financials, churn, and FY2024 projections |
 
 ## Skills
 

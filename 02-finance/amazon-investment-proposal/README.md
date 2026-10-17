@@ -1,6 +1,6 @@
 # Equity Research — Amazon.com, Inc. (AMZN)
 
-**DCF valuation · FCFF bottom-up · scenario analysis · BUY, $292.99 target**
+**DCF valuation · FCFF bottom-up · 33-sheet model · BUY, $292.99 target**
 
 > Corporate Finance (FIN-0300), Hult International Business School, December 2025. Sole author.
 
@@ -14,6 +14,28 @@ Discounted Cash Flow using **Free Cash Flow to the Firm (FCFF)** built bottom-up
 top-down margin assumption applied to consolidated revenue. Amazon's segments have structurally
 different economics — retail runs on thin margins and heavy fulfilment cost, AWS does not — so a
 blended assumption hides the thing that actually drives the valuation.
+
+## The model
+
+[`amazon-dcf-model.xlsx`](amazon-dcf-model.xlsx) — 33 sheets. The parts worth looking at:
+
+| Sheet | What it does |
+|---|---|
+| `HWMS Model` | **Holt-Winters multiplicative seasonal** forecast of quarterly sales — Amazon's Q4 is structurally different from its other quarters, so a linear trend forecast misprices the business |
+| `Revenue` | Segment build, including **AWS Remaining Performance Obligations (RPO)** as a forward demand signal and global IT spend as the AWS driver |
+| `Reg. Beta` | Equity beta regressed on **5 years of monthly AMZN vs. S&P 500 returns**, rather than taking a published beta |
+| `Bonds` | Cost of debt built from Amazon's **actual outstanding note issues** (2014–2025 maturities) rather than a single blended rate |
+| `WACC` | Cost of capital from the regressed beta, the bond schedule, 10-year T-bill, and tax rate |
+| `Scenarios` / `Scenario Summary` | Bull, base and bear cases with the drivers switched explicitly |
+| `Multiples` / `Peer Fin Info` | Relative valuation against comparables — Microsoft/Azure as the AWS proxy, Alibaba for global e-commerce and cloud |
+| `DCF` | The valuation itself |
+| `Forecasted FS` / `Actuals FS` | Three-statement actuals and forecast |
+
+Sources are cited per sheet: Amazon investor relations, the 10-K, the 2024 annual report,
+Yahoo Finance price history, GuruFocus and Finbox for working-capital ratios.
+
+The model is built on a course-provided workbook shell; the Amazon analysis, forecasts and
+outputs in it are mine.
 
 ## Investment thesis
 
@@ -45,7 +67,8 @@ honest description of the risk being taken.
   hold position
 
 ## Skills
-DCF / FCFF modelling · WACC and cost of capital · bottom-up segment forecasting · scenario and
-sensitivity analysis · equity research report writing
+DCF / FCFF modelling · WACC from regressed beta and an issue-level bond schedule ·
+Holt-Winters seasonal forecasting · bottom-up segment forecasting · comparable company analysis ·
+scenario and sensitivity analysis · three-statement modelling · equity research report writing
 
-📄 [Full report](amazon-investment-proposal.docx)
+📄 [Full report](amazon-investment-proposal.docx) · 📊 [Valuation model](amazon-dcf-model.xlsx)

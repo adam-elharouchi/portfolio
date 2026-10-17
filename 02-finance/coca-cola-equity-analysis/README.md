@@ -28,6 +28,10 @@ Fairly valued on earnings; modestly undervalued on a cash-flow basis.
 
 ## Method 2 — Dividend Discount Model
 
+Built in [`coca-cola-ddm-model.xlsx`](coca-cola-ddm-model.xlsx) — ROE and sustainable-growth
+derivation, a non-constant-growth DDM, and the constant-growth case, ~170 formulas across three
+sheets. Built on a course-provided shell; the KO analysis in it is mine.
+
 Constant-growth DDM, required return 7%, sustainable dividend growth 5.87%:
 
 | | |
@@ -68,4 +72,4 @@ modest upside.
 Comparable company analysis · DDM and Gordon Growth · sensitivity awareness and model-limitation
 analysis · multiples (P/E, P/S, P/B, EV/EBITDA) · reconciling conflicting valuation methods
 
-📄 [Full report](coca-cola-equity-analysis.docx)
+📄 [Full report](coca-cola-equity-analysis.docx) · 📊 [DDM model](coca-cola-ddm-model.xlsx)
