@@ -3,7 +3,7 @@
 **NPV · IRR · PI · discounted payback · WACC**
 
 > Accounting & Finance final project, Hult International Business School. Team 3, BOS 1.
-> The written report is mine; the model is a team deliverable.
+> The written report is mine; the model I built jointly with a teammate.
 
 ## Problem
 Evaluate a capital investment at Best Buy on its merits — build the cost of capital, project the

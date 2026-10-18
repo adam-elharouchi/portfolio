@@ -48,7 +48,7 @@ Holt-Winters additive and multiplicative, ETS) · seasonal index construction ·
 regression · percent-of-sales forecasting · forecasted financial statements · scenario analysis ·
 10-K analysis
 
-The workbook is built on Timothy R. Mayes' forecasting template; the Walmart analysis,
-forecasts and statements in it are mine.
+Built from a blank forecasting template provided by the professor. Every model, forecast and
+statement in the workbook is mine.
 
 📄 [Report](walmart-report.docx) · 📊 [Forecasting models](walmart-forecasting-models.xlsx)
