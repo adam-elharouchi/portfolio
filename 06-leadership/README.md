@@ -2,12 +2,15 @@
 
 Elected and appointed roles alongside the degree — and the financial operations behind them.
 
-| Role | Organisation |
-|---|---|
-| **President** | Hult Competition Hub |
-| **President** | HULT FC |
-| **Head of Volunteers** | HBS VCPE |
-| **Director of Social & Professional Events** | Boston Arab Society |
+| Role | Organisation | |
+|---|---|---|
+| **Vice President & Director of Events** | Boston Arab Society | current |
+| **President** | Hult Competition Hub | former |
+| **President** | Hult FC | former |
+| **Head of Volunteers** | HBS VCPE | former |
+
+Raised **$7.5K** for The Home for Little Wanderers — which supports homeless and at-risk
+children and families — running the Boston Marathon.
 
 ## [Club finance →](club-finance/)
 

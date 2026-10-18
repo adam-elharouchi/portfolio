@@ -133,8 +133,10 @@ Smaller builds outside AnalytIQ.
 
 **[Browse the section →](06-leadership/)**
 
-President, Hult Competition Hub · President, HULT FC · Head of Volunteers, HBS VCPE ·
-Director of Social & Professional Events, Boston Arab Society
+Vice President & Director of Events, Boston Arab Society · former President, Hult Competition
+Hub · former President, Hult FC · former Head of Volunteers, HBS VCPE
+
+Raised $7.5K for The Home for Little Wanderers, running the Boston Marathon.
 
 Two of those roles came with a budget. The [club finance workbooks](06-leadership/club-finance/)
 cover estimated vs. actual across a HULT FC season and per-event P&L plus bank reconciliation
