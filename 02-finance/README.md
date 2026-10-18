@@ -1,7 +1,7 @@
 # Finance
 
-Five projects: a forensic accounting investigation, two equity valuations, a quarterly
-financial analysis, and a portfolio risk review. The valuations ship with their underlying Excel models.
+Seven projects spanning valuation, forensic accounting, forecasting, capital budgeting and
+portfolio management. The valuations and models ship with their underlying Excel. The valuations ship with their underlying Excel models.
 
 | Project | Method | Conclusion |
 |---|---|---|
@@ -10,6 +10,8 @@ financial analysis, and a portfolio risk review. The valuations ship with their 
 | [Coca-Cola (KO) equity analysis](coca-cola-equity-analysis/) | Comparables + DDM + sentiment | Fairly valued, modest upside |
 | [BigTech quarterly analysis](bigtech-quarterly-analysis/) | Three-statement analysis, cohort metrics | Nine quarters of financials, churn, and FY2024 projections |
 | [Portfolio risk management](portfolio-risk-management/) | Portfolio management, hedging | Three holdings exposed to one geopolitical shock in opposite directions, each with a specific defensive instrument |
+| [Walmart sales forecasting](walmart-sales-forecasting/) | Time-series forecasting | Seven forecasting methods compared across 12 sheets, feeding forecasted financial statements |
+| [Best Buy capital budgeting](best-buy-capital-budgeting/) | NPV, IRR, PI, payback | Full investment-criteria set on a WACC-derived discount rate, plus 10-K and hedging analysis |
 
 ## Skills
 

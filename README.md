@@ -67,6 +67,8 @@ to the gradebook automatically.
 | [Coca-Cola (KO) equity analysis](02-finance/coca-cola-equity-analysis/) | Comparables + DDM + market sentiment | Fairly valued; DDM outlier explained by model sensitivity |
 | [BigTech quarterly analysis](02-finance/bigtech-quarterly-analysis/) | Three-statement analysis, cohort metrics | Nine quarters of financials, churn, and FY2024 projections |
 | [Portfolio risk management](02-finance/portfolio-risk-management/) | Portfolio management, hedging | Three holdings exposed to one geopolitical shock in opposite directions, each with a specific defensive instrument |
+| [Walmart sales forecasting](02-finance/walmart-sales-forecasting/) | Time-series forecasting | Seven forecasting methods compared across 12 sheets, feeding forecasted financial statements |
+| [Best Buy capital budgeting](02-finance/best-buy-capital-budgeting/) | NPV, IRR, PI, payback | Full investment-criteria set on a WACC-derived discount rate, plus 10-K and hedging analysis |
 
 **Skills** — DCF / FCFF · WACC & CAPM · DDM · comparable company analysis · multiples ·
 scenario & sensitivity analysis · US GAAP (ASC 606, 326, 330, 250, 360, 842, 985-20) ·
@@ -101,12 +103,8 @@ SQL · regression · classification · clustering · PCA · feature selection ·
 | Project | Focus | The core of it |
 |---|---|---|
 | [AeroShield operations capstone](04-strategic-consulting/aeroshield-operations-capstone/) **· [live demo](https://adam-elharouchi.github.io/portfolio/04-strategic-consulting/aeroshield-operations-capstone/platform.html)** | Operations · throughput | A working six-module operations platform delivered to the client, with cycle-time and bottleneck analysis behind it |
-| [Gourmet Wafers operations strategy](04-strategic-consulting/gourmet-wafers-operations/) | Operations · forecasting | A 1.97 December seasonality index makes peak demand 3,842 boxes against a 1,950 average — planning to the average would have under-built capacity by half |
 | [Brunk Industries OPS scoring](04-strategic-consulting/brunk-industries-ops-scoring/) **· internship** | Operations · metric design | A composite part-level score weighting returns 5000x against scrap's 1.5x, used to sort the portfolio into stars, cash cows, question marks and dogs |
-| [NexTech performance transformation](04-strategic-consulting/nextech-performance-transformation/) | Strategy · balanced scorecard | The plateau is a crisis of translation, not ambition; the measurement system is selecting against the stated strategy |
 | [Layers brand strategy](04-strategic-consulting/layers-brand-strategy/) | Brand · live client challenge | People want to grow but don't know how to begin — so the job is making the first step concrete |
-| [Pizza chain market expansion](04-strategic-consulting/pizza-chain-market-expansion/) | Strategy · growth | Strategic vision and expansion path for a small local operator |
-| [Café Nero customer experience](04-strategic-consulting/cafe-nero-customer-experience/) | Research · JTBD | Structured field observation in Boston; succeeds at the functional job, with service bottlenecks capping the relationship at convenience |
 
 **Skills** — strategic vision setting · competitive positioning · market entry & expansion ·
 balanced scorecard · demand forecasting with seasonal indexing · capacity planning · reorder
