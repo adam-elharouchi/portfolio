@@ -21,11 +21,9 @@ I work at the intersection of financial analysis and applied data science — va
 forensic accounting on one side, machine learning and strategy work on the other.
 
 **Sections:** [Entrepreneurial Endeavors](#entrepreneurial-endeavors) ·
-[Professional Experience](#professional-experience) ·
-[Valuation & Financial Strategy](#valuation--financial-strategy) ·
+[Finance & Strategy](#finance--strategy) ·
 [Data & Business Analytics](#data--business-analytics) ·
-[Strategy & Client Advisory](#strategy--client-advisory) ·
-[Leadership & Impact](#leadership--impact)
+[Experience & Leadership](#experience--leadership)
 
 Every project has a write-up covering the problem, the method, the measured result, and the
 limitations.
@@ -59,34 +57,24 @@ to the gradebook automatically.
 | **Auth** | JWT · bcrypt · per-tenant OIDC SSO · LTI 1.3 with grade passback |
 | **Role** | Sole developer and founder — product, architecture, implementation, deployment |
 
----
 
-## Professional Experience
+### Also built
 
-**Brunk Industries** — Financial Analyst Intern · Mar – Jun 2025 · Remote
-- Built DCF models, revenue forecasts and cost-revenue analyses in Excel and Python, informing
-  **3 strategic expansion proposals** with **$500K+** projected revenue impact — all approved
-  and implemented
-- Analysed SAP budget-vs-actual reports to isolate cost inefficiencies, driving a **7% cost
-  improvement** across manufacturing units
-- Designed a composite part-level operations score, delivered to leadership and approved —
-  [see the write-up](04-strategic-consulting/brunk-industries-ops-scoring/)
 
-**Blue Green Brands** — Business Intelligence & Analyst Intern · Jun – Dec 2025 · Hybrid
-- Project lead on a full-scale cloud data migration: **800+** workbooks, dashboards and datasets
-  from legacy GCP Sigma to AWS Sigma in **2.5 months with zero errors**, designing the migration
-  plan, SQL replication logic and QA process
-- Built **30+** Power BI and Sigma dashboards in 4 months while maintaining a 50+ dashboard
-  portfolio across three enterprise clients
-- Primary liaison across **8+** internal and client stakeholder teams
+| Project | Stack |
+|---|---|
+| [Personal finance dashboard](05-software/budgeting-app/) | Next.js 15, TypeScript, Plaid API, Zustand |
+| [Voice interview simulator](05-software/interview-simulator/) | Node.js, Express, Anthropic API, Web Speech API |
 
-*Client work under NDA — described here, no files published.*
+**Skills** — TypeScript · React / Next.js · Node.js · REST API integration · server-side secret handling
 
 ---
 
-## Valuation & Financial Strategy
+## Finance & Strategy
 
-**[Browse the section →](02-finance/)**
+### Valuation & Financial Analysis
+
+**[Finance folder →](02-finance/)** · **[Strategy folder →](04-strategic-consulting/)**
 
 | Project | Method | Conclusion |
 |---|---|---|
@@ -97,6 +85,15 @@ to the gradebook automatically.
 | [Portfolio risk management](02-finance/portfolio-risk-management/) | Portfolio management, hedging | Three holdings exposed to one geopolitical shock in opposite directions, each with a specific defensive instrument |
 | [Walmart sales forecasting](02-finance/walmart-sales-forecasting/) | Time-series forecasting | Seven forecasting methods compared across 12 sheets, feeding forecasted financial statements |
 | [Best Buy capital budgeting](02-finance/best-buy-capital-budgeting/) | NPV, IRR, PI, payback | Full investment-criteria set on a WACC-derived discount rate, plus 10-K and hedging analysis |
+
+### Strategy & Client Advisory
+
+| Project | Focus | The core of it |
+|---|---|---|
+| [AeroShield operations capstone](04-strategic-consulting/aeroshield-operations-capstone/) **· [live demo](https://adam-elharouchi.github.io/portfolio/04-strategic-consulting/aeroshield-operations-capstone/platform.html)** | Operations · throughput | A working six-module operations platform delivered to the client, with cycle-time and bottleneck analysis behind it |
+| [Korn Ferry AI measurement](04-strategic-consulting/korn-ferry-ai-measurement/) | Strategy · live client | Everyone measures time saved; for a consulting firm quality is the product. A quality audit trail plus a knowledge flywheel, productised as a client offering |
+| [Brunk Industries OPS scoring](04-strategic-consulting/brunk-industries-ops-scoring/) **· internship** | Operations · metric design | A composite part-level score weighting returns 5000x against scrap's 1.5x, used to sort the portfolio into stars, cash cows, question marks and dogs |
+| [Layers brand strategy](04-strategic-consulting/layers-brand-strategy/) | Brand · live client challenge | People want to grow but don't know how to begin — so the job is making the first step concrete |
 
 **Skills** — DCF / FCFF · WACC & CAPM · DDM · comparable company analysis · multiples ·
 scenario & sensitivity analysis · US GAAP (ASC 606, 326, 330, 250, 360, 842, 985-20) ·
@@ -122,42 +119,31 @@ financial statement restatement · earnings-management detection
 **Skills** — pandas · numpy · scikit-learn · LightGBM · imbalanced-learn · matplotlib · seaborn ·
 SQL · regression · classification · clustering · PCA · feature selection · hyperparameter tuning
 
----
-
-## Strategy & Client Advisory
-
-**[Browse the section →](04-strategic-consulting/)**
-
-| Project | Focus | The core of it |
-|---|---|---|
-| [AeroShield operations capstone](04-strategic-consulting/aeroshield-operations-capstone/) **· [live demo](https://adam-elharouchi.github.io/portfolio/04-strategic-consulting/aeroshield-operations-capstone/platform.html)** | Operations · throughput | A working six-module operations platform delivered to the client, with cycle-time and bottleneck analysis behind it |
-| [Korn Ferry AI measurement](04-strategic-consulting/korn-ferry-ai-measurement/) | Strategy · live client | Everyone measures time saved; for a consulting firm quality is the product. A quality audit trail plus a knowledge flywheel, productised as a client offering |
-| [Brunk Industries OPS scoring](04-strategic-consulting/brunk-industries-ops-scoring/) **· internship** | Operations · metric design | A composite part-level score weighting returns 5000x against scrap's 1.5x, used to sort the portfolio into stars, cash cows, question marks and dogs |
-| [Layers brand strategy](04-strategic-consulting/layers-brand-strategy/) | Brand · live client challenge | People want to grow but don't know how to begin — so the job is making the first step concrete |
-
-**Skills** — strategic vision setting · competitive positioning · market entry & expansion ·
-balanced scorecard · demand forecasting with seasonal indexing · capacity planning · reorder
-point & safety stock · 4Vs analysis · process mapping · theory-of-constraints reasoning ·
-Jobs-to-Be-Done · observational research
 
 ---
 
-### Also built
+## Experience & Leadership
 
-**[Browse the section →](05-software/)**
+**Brunk Industries** — Financial Analyst Intern · Mar – Jun 2025 · Remote
+- Built DCF models, revenue forecasts and cost-revenue analyses in Excel and Python, informing
+  **3 strategic expansion proposals** with **$500K+** projected revenue impact — all approved
+  and implemented
+- Analysed SAP budget-vs-actual reports to isolate cost inefficiencies, driving a **7% cost
+  improvement** across manufacturing units
+- Designed a composite part-level operations score, delivered to leadership and approved —
+  [see the write-up](04-strategic-consulting/brunk-industries-ops-scoring/)
 
-Smaller builds outside AnalytIQ.
+**Blue Green Brands** — Business Intelligence & Analyst Intern · Jun – Dec 2025 · Hybrid
+- Project lead on a full-scale cloud data migration: **800+** workbooks, dashboards and datasets
+  from legacy GCP Sigma to AWS Sigma in **2.5 months with zero errors**, designing the migration
+  plan, SQL replication logic and QA process
+- Built **30+** Power BI and Sigma dashboards in 4 months while maintaining a 50+ dashboard
+  portfolio across three enterprise clients
+- Primary liaison across **8+** internal and client stakeholder teams
 
-| Project | Stack |
-|---|---|
-| [Personal finance dashboard](05-software/budgeting-app/) | Next.js 15, TypeScript, Plaid API, Zustand |
-| [Voice interview simulator](05-software/interview-simulator/) | Node.js, Express, Anthropic API, Web Speech API |
+*Client work under NDA — described here, no files published.*
 
-**Skills** — TypeScript · React / Next.js · Node.js · REST API integration · server-side secret handling
-
----
-
-## Leadership & Impact
+### Leadership
 
 **[Browse the section →](06-leadership/)**
 
