@@ -132,7 +132,7 @@ SQL · regression · classification · clustering · PCA · feature selection ·
   **LTI 1.3** for LMS interoperability; drove product from 0 to V2 across dual portals
 - [Full write-up](01-analytiq/)
 
-**Blue Green** — Business Intelligence & Analyst Intern · Sep 2025 – May 2026 · Hybrid
+**Blue Green** — Business Intelligence & Analyst Intern · Sep – Dec 2025 · Hybrid
 *Promoted from Data Analyst & Migration Intern (Jun – Sep 2025)*
 - Project lead on a full-scale cloud data migration: **800+** workbooks, dashboards and datasets
   from legacy GCP Sigma to AWS Sigma in **2.5 months with zero errors**, designing the migration
