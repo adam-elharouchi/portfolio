@@ -20,16 +20,21 @@ BBA Finance & Business Analytics (STEM), Hult International Business School, Bos
 I work at the intersection of financial analysis and applied data science — valuation and
 forensic accounting on one side, machine learning and strategy work on the other.
 
-**Sections:** [AnalytIQ](#analytiq) · [Finance](#finance) ·
-[Business Analytics](#business-analytics) · [Strategic Consulting](#strategic-consulting) ·
-[Software](#software) · [Leadership](#leadership)
+**Sections:** [Entrepreneurial Endeavors](#entrepreneurial-endeavors) ·
+[Professional Experience](#professional-experience) ·
+[Valuation & Financial Strategy](#valuation--financial-strategy) ·
+[Data & Business Analytics](#data--business-analytics) ·
+[Strategy & Client Advisory](#strategy--client-advisory) ·
+[Leadership & Impact](#leadership--impact)
 
 Every project has a write-up covering the problem, the method, the measured result, and the
 limitations.
 
 ---
 
-## AnalytIQ
+## Entrepreneurial Endeavors
+
+### AnalytIQ
 
 > **An AI-powered analytics learning platform that generates coursework from a professor's own
 > material and grades student code by executing it.**
@@ -56,7 +61,30 @@ to the gradebook automatically.
 
 ---
 
-## Finance
+## Professional Experience
+
+**Brunk Industries** — Financial Analyst Intern · Mar – Jun 2025 · Remote
+- Built DCF models, revenue forecasts and cost-revenue analyses in Excel and Python, informing
+  **3 strategic expansion proposals** with **$500K+** projected revenue impact — all approved
+  and implemented
+- Analysed SAP budget-vs-actual reports to isolate cost inefficiencies, driving a **7% cost
+  improvement** across manufacturing units
+- Designed a composite part-level operations score, delivered to leadership and approved —
+  [see the write-up](04-strategic-consulting/brunk-industries-ops-scoring/)
+
+**Blue Green Brands** — Business Intelligence & Analyst Intern · Jun – Dec 2025 · Hybrid
+- Project lead on a full-scale cloud data migration: **800+** workbooks, dashboards and datasets
+  from legacy GCP Sigma to AWS Sigma in **2.5 months with zero errors**, designing the migration
+  plan, SQL replication logic and QA process
+- Built **30+** Power BI and Sigma dashboards in 4 months while maintaining a 50+ dashboard
+  portfolio across three enterprise clients
+- Primary liaison across **8+** internal and client stakeholder teams
+
+*Client work under NDA — described here, no files published.*
+
+---
+
+## Valuation & Financial Strategy
 
 **[Browse the section →](02-finance/)**
 
@@ -76,7 +104,7 @@ financial statement restatement · earnings-management detection
 
 ---
 
-## Business Analytics
+## Data & Business Analytics
 
 **[Browse the section →](03-business-analytics/)**
 
@@ -96,7 +124,7 @@ SQL · regression · classification · clustering · PCA · feature selection ·
 
 ---
 
-## Strategic Consulting
+## Strategy & Client Advisory
 
 **[Browse the section →](04-strategic-consulting/)**
 
@@ -114,7 +142,7 @@ Jobs-to-Be-Done · observational research
 
 ---
 
-## Software
+### Also built
 
 **[Browse the section →](05-software/)**
 
@@ -129,7 +157,7 @@ Smaller builds outside AnalytIQ.
 
 ---
 
-## Leadership
+## Leadership & Impact
 
 **[Browse the section →](06-leadership/)**
 

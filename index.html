@@ -157,6 +157,16 @@
   .acc-skills b{color:var(--text-dim); font-weight:650}
   .acc-all{font-size:.84rem; font-weight:500; white-space:nowrap}
 
+  /* ---------- experience ---------- */
+  .card.role{cursor:default}
+  .card.role:hover{border-color:var(--border); transform:none}
+  .card.role .when{margin-left:auto; font-size:.78rem; color:var(--text-faint); white-space:nowrap}
+  .bullets{margin:8px 0 0; padding-left:18px; color:var(--text-dim); font-size:.89rem; line-height:1.6}
+  .bullets li{margin-bottom:5px}
+  .bullets b{color:var(--text); font-weight:650}
+  .card.role .note{margin:10px 0 0; font-size:.78rem; color:var(--text-faint); font-style:italic}
+  @media (max-width:560px){ .card.role .when{margin-left:0; width:100%} }
+
   /* ---------- leadership ---------- */
   .lead{margin:34px 0 0}
   .lead h2{font-size:1.12rem; margin:0 0 4px; letter-spacing:-.018em}
@@ -182,11 +192,12 @@
   <div class="nav-in">
     <span class="nav-name">Adam El Harouchi</span>
     <div class="nav-links">
-      <a href="#analytiq">AnalytIQ</a>
-      <a href="#finance">Finance</a>
-      <a href="#analytics">Business Analytics</a>
-      <a href="#consulting">Strategic Consulting</a>
-      <a href="#contact">Contact</a>
+      <a href="#analytiq">Ventures</a>
+      <a href="#finance">Valuation</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#consulting">Strategy</a>
+      <a href="#experience">Experience</a>
+      <a href="#leadership">Leadership</a>
     </div>
     <button class="theme-btn" id="themeToggle" aria-label="Toggle colour scheme">◐</button>
   </div>
@@ -225,7 +236,7 @@
 <div class="wrap">
 
   <!-- ===== AnalytIQ — standalone ===== -->
-  <p class="feature-label" id="analytiq">What I've built</p>
+  <p class="feature-label" id="analytiq">Entrepreneurial Endeavors</p>
   <article class="featured">
     <a class="shot" href="https://myanalytiq.com">
       <img src="01-analytiq/screenshots/01-landing-hero.jpg" width="800" height="600"
@@ -269,15 +280,15 @@
     built on the Claude API.
   </p>
 
-  <p class="feature-label">Project work — open a section</p>
+  <p class="feature-label">Project work — open any section</p>
 
   <!-- ===== FINANCE ===== -->
   <details class="acc" id="finance" open>
     <summary>
       <span class="chev" aria-hidden="true">▶</span>
-      <span class="acc-title">Finance</span>
+      <span class="acc-title">Valuation &amp; Financial Strategy</span>
       <span class="acc-count">7 projects</span>
-      <span class="acc-blurb">Valuation, forecasting &amp; capital budgeting · models included</span>
+      <span class="acc-blurb">DCF, forensic accounting, forecasting — Excel and Python</span>
     </summary>
     <div class="acc-body">
       <div class="projects">
@@ -324,9 +335,9 @@
   <details class="acc" id="analytics">
     <summary>
       <span class="chev" aria-hidden="true">▶</span>
-      <span class="acc-title">Business Analytics</span>
+      <span class="acc-title">Data &amp; Business Analytics</span>
       <span class="acc-count">8 projects</span>
-      <span class="acc-blurb">Machine learning in Python, plus SQL</span>
+      <span class="acc-blurb">ML and SQL on pricing, fraud and valuation problems</span>
     </summary>
     <div class="acc-body">
       <div class="projects">
@@ -376,9 +387,9 @@
   <details class="acc" id="consulting">
     <summary>
       <span class="chev" aria-hidden="true">▶</span>
-      <span class="acc-title">Strategic Consulting</span>
+      <span class="acc-title">Strategy &amp; Client Advisory</span>
       <span class="acc-count">4 projects</span>
-      <span class="acc-blurb">Live client work, operations &amp; brand</span>
+      <span class="acc-blurb">Live client engagements — strategy, operations, brand</span>
     </summary>
     <div class="acc-body">
       <div class="projects">
@@ -407,8 +418,51 @@
   </details>
 
   <!-- ===== LEADERSHIP ===== -->
+
+  <!-- ============ PROFESSIONAL EXPERIENCE ============ -->
+  <section class="lead" id="experience">
+    <h2>Professional Experience</h2>
+    <p class="sub">Two internships — one in finance, one in analytics consulting.</p>
+    <div class="projects">
+      <div class="card role">
+        <div class="card-top">
+          <span class="card-title">Financial Analyst Intern</span>
+          <span class="tag">Brunk Industries</span>
+          <span class="when">Mar – Jun 2025 · Remote</span>
+        </div>
+        <ul class="bullets">
+          <li>Built DCF models, revenue forecasts and cost-revenue analyses in Excel and Python,
+              informing <b>3 strategic expansion proposals</b> with <b>$500K+</b> projected revenue
+              impact — all approved and implemented.</li>
+          <li>Analysed SAP budget-vs-actual reports to isolate cost inefficiencies, driving a
+              <b>7% cost improvement</b> across manufacturing units.</li>
+          <li>Designed a composite part-level operations score and delivered it to leadership,
+              who approved it —
+              <a href="https://github.com/adam-elharouchi/portfolio/tree/main/04-strategic-consulting/brunk-industries-ops-scoring">see the write-up →</a></li>
+        </ul>
+      </div>
+      <div class="card role">
+        <div class="card-top">
+          <span class="card-title">Business Intelligence &amp; Analyst Intern</span>
+          <span class="tag">Blue Green Brands</span>
+          <span class="when">Jun – Dec 2025 · Hybrid</span>
+        </div>
+        <ul class="bullets">
+          <li>Project lead on a full-scale cloud data migration — <b>800+</b> workbooks, dashboards
+              and datasets from legacy GCP Sigma to AWS Sigma in <b>2.5 months with zero errors</b>,
+              designing the migration plan, SQL replication logic and QA process.</li>
+          <li>Built <b>30+</b> Power BI and Sigma dashboards in 4 months while maintaining a
+              50+ dashboard portfolio across three enterprise clients.</li>
+          <li>Primary liaison across <b>8+</b> internal and client stakeholder teams spanning BI,
+              data science, technical and vendor functions.</li>
+        </ul>
+        <p class="note">Client work under NDA — described here, no files published.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="lead" id="leadership">
-    <h2>Leadership</h2>
+    <h2>Leadership &amp; Impact</h2>
     <p class="sub">Elected and appointed roles alongside the degree — two came with a budget.</p>
     <ul class="lead-list">
       <li><span class="role">Vice President &amp; Director of Events</span> <span class="org">· Boston Arab Society</span></li>
