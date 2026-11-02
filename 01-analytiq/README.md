@@ -85,6 +85,11 @@ logic), and `workers/` (async tasks), so the grading path can be tested without 
 **Multi-tenancy** runs through the whole system: a `superadmin` tier manages institutions, each
 institution gets `tenant_admin` control over its own users, SSO configuration, and branding.
 
+## Adoption
+
+In use at Hult International Business School — **4 professors across 5 classes**, **41
+registered users**, and **83 exercises generated** from their own course material.
+
 ## Scale
 
 | | |

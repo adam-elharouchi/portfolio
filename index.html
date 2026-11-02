@@ -168,6 +168,8 @@
   .bullets{margin:8px 0 0; padding-left:18px; color:var(--text-dim); font-size:.89rem; line-height:1.6}
   .bullets li{margin-bottom:5px}
   .bullets b{color:var(--text); font-weight:650}
+  .card.role .prev{margin:6px 0 0; font-size:.8rem; color:var(--text-faint)}
+  .card.role .prev b{color:var(--text-dim); font-weight:600}
   .card.role .note{margin:10px 0 0; font-size:.78rem; color:var(--text-faint); font-style:italic}
   @media (max-width:560px){ .card.role .when{margin-left:0; width:100%} }
 
@@ -261,11 +263,15 @@
         plugs into an institution's existing LMS over LTI 1.3, so students never create an
         account and grades flow straight back to the gradebook.
       </p>
+      <p>
+        <strong>In use at Hult:</strong> 4 professors across 5 classes, 41 registered users, and
+        <strong>83 exercises generated</strong> from their own course material.
+      </p>
       <dl class="specs">
         <div class="spec"><dt>Stack</dt><dd>Flask · PostgreSQL · Redis + Celery · Gemini</dd></div>
-        <div class="spec"><dt>Commits</dt><dd><span class="n">710</span></dd></div>
+        <div class="spec"><dt>Built</dt><dd><span class="n">710</span> commits · <span class="n">66</span> test files</dd></div>
         <div class="spec"><dt>Python</dt><dd><span class="n">~39,800</span> lines</dd></div>
-        <div class="spec"><dt>Test files</dt><dd><span class="n">66</span></dd></div>
+        <div class="spec"><dt>In use</dt><dd><span class="n">4</span> professors · <span class="n">5</span> classes · <span class="n">41</span> users</dd></div>
         <div class="spec"><dt>Languages graded</dt><dd>Python · R · JS · SQL · Java</dd></div>
         <div class="spec"><dt>Auth</dt><dd>JWT · OIDC SSO · LTI 1.3</dd></div>
       </dl>
@@ -410,11 +416,53 @@
   <!-- ============ PROFESSIONAL EXPERIENCE ============ -->
   <section class="lead" id="experience">
     <h2>Experience &amp; Leadership</h2>
-    <p class="sub">Two internships, four elected or appointed roles.</p>
+    <p class="sub">Four roles across finance, analytics consulting and my own venture.</p>
     <div class="projects">
+
       <div class="card role">
         <div class="card-top">
-          <span class="card-title">Financial Analyst Intern</span>
+          <span class="card-title">Founder</span>
+          <span class="tag">AnalytIQ</span>
+          <span class="when">Dec 2025 – Present · Cambridge, MA</span>
+        </div>
+        <ul class="bullets">
+          <li>Built and scaled an AI analytics learning platform to <b>41 registered users across
+              4 professors and 5 classes</b>, generating <b>83 exercises</b> from their own course
+              material.</li>
+          <li>Architected the full stack — Flask, Supabase/PostgreSQL, GenAI orchestration — and
+              integrated <b>LTI 1.3</b> for LMS interoperability. Drove product from 0 to V2 across
+              dual professor and student portals.
+              <a href="#analytiq">See the full write-up ↑</a></li>
+        </ul>
+      </div>
+
+      <div class="card role">
+        <div class="card-top">
+          <span class="card-title">Business Intelligence &amp; Analyst Intern</span>
+          <span class="tag">Blue Green</span>
+          <span class="when">Sep 2025 – May 2026 · Hybrid</span>
+        </div>
+        <p class="prev">Promoted from <b>Data Analyst &amp; Migration Intern</b> · Jun – Sep 2025</p>
+        <ul class="bullets">
+          <li>Project lead on a full-scale cloud data migration — <b>800+</b> workbooks, dashboards
+              and datasets from legacy GCP Sigma to AWS Sigma in <b>2.5 months with zero errors</b>,
+              designing the migration plan, SQL replication logic and QA/reconciliation process in a
+              high-ambiguity environment.</li>
+          <li>Built <b>30+</b> Power BI and Sigma dashboards in 4 months while maintaining and
+              enriching a <b>50+</b> dashboard portfolio for enterprise clients
+              <b>Fiserv, Clover and Fidelity</b>.</li>
+          <li>Primary liaison across <b>8+</b> internal and client stakeholder teams — BI, data
+              science, technical and Sigma vendor teams at Fiserv and Clover; marketing, website
+              and analytics teams at Fidelity.</li>
+          <li>Delivered monthly cross-source reporting and partnered on go-to-market planning and
+              product packaging strategy.</li>
+        </ul>
+        <p class="note">Client work under NDA — described here, no files published.</p>
+      </div>
+
+      <div class="card role">
+        <div class="card-top">
+          <span class="card-title">Finance Analyst Intern</span>
           <span class="tag">Brunk Industries</span>
           <span class="when">Mar – Jun 2025 · Remote</span>
         </div>
@@ -424,28 +472,28 @@
               impact — all approved and implemented.</li>
           <li>Analysed SAP budget-vs-actual reports to isolate cost inefficiencies, driving a
               <b>7% cost improvement</b> across manufacturing units.</li>
-          <li>Designed a composite part-level operations score and delivered it to leadership,
-              who approved it —
+          <li>Benchmarked <b>10–15</b> manufacturing companies across agriculture, laser and
+              mechanical parts, researching expansion into clean energy and insourcing.</li>
+          <li>Designed a composite part-level operations score, delivered to leadership and
+              approved —
               <a href="https://github.com/adam-elharouchi/portfolio/tree/main/04-strategic-consulting/brunk-industries-ops-scoring">see the write-up →</a></li>
         </ul>
       </div>
+
       <div class="card role">
         <div class="card-top">
-          <span class="card-title">Business Intelligence &amp; Analyst Intern</span>
-          <span class="tag">Blue Green Brands</span>
-          <span class="when">Jun – Dec 2025 · Hybrid</span>
+          <span class="card-title">Accounting &amp; Finance Intern</span>
+          <span class="tag">Wafa IMA Assistance</span>
+          <span class="when">May – Jun 2024 · Casablanca, Morocco</span>
         </div>
         <ul class="bullets">
-          <li>Project lead on a full-scale cloud data migration — <b>800+</b> workbooks, dashboards
-              and datasets from legacy GCP Sigma to AWS Sigma in <b>2.5 months with zero errors</b>,
-              designing the migration plan, SQL replication logic and QA process.</li>
-          <li>Built <b>30+</b> Power BI and Sigma dashboards in 4 months while maintaining a
-              50+ dashboard portfolio across three enterprise clients.</li>
-          <li>Primary liaison across <b>8+</b> internal and client stakeholder teams spanning BI,
-              data science, technical and vendor functions.</li>
+          <li>Recorded and organised daily financial transactions and supported the finance team's
+              reporting cycle.</li>
+          <li>Assisted with budget preparation, financial projections and forecasting, plus
+              day-to-day accounting operations and special projects.</li>
         </ul>
-        <p class="note">Client work under NDA — described here, no files published.</p>
       </div>
+
     </div>
     <p class="grp" style="margin-top:26px">Leadership</p>
     <ul class="lead-list">

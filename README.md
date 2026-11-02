@@ -55,6 +55,7 @@ to the gradebook automatically.
 | **Scale** | 710 commits · ~39,800 lines of Python · ~13,900 of JavaScript · 66 test files |
 | **Grades** | Python, R, JavaScript, SQL, Java — sandboxed execution with `RLIMIT_*` and import blocklists |
 | **Auth** | JWT · bcrypt · per-tenant OIDC SSO · LTI 1.3 with grade passback |
+| **In use** | 4 professors · 5 classes · 41 registered users · 83 exercises generated |
 | **Role** | Sole developer and founder — product, architecture, implementation, deployment |
 
 
@@ -124,24 +125,37 @@ SQL · regression · classification · clustering · PCA · feature selection ·
 
 ## Experience & Leadership
 
-**Brunk Industries** — Financial Analyst Intern · Mar – Jun 2025 · Remote
-- Built DCF models, revenue forecasts and cost-revenue analyses in Excel and Python, informing
-  **3 strategic expansion proposals** with **$500K+** projected revenue impact — all approved
-  and implemented
-- Analysed SAP budget-vs-actual reports to isolate cost inefficiencies, driving a **7% cost
-  improvement** across manufacturing units
-- Designed a composite part-level operations score, delivered to leadership and approved —
-  [see the write-up](04-strategic-consulting/brunk-industries-ops-scoring/)
+**AnalytIQ** — Founder · Dec 2025 – Present · Cambridge, MA
+- Built and scaled an AI analytics learning platform to **41 registered users across 4
+  professors and 5 classes**, generating **83 exercises** from their own course material
+- Architected the full stack (Flask, Supabase/PostgreSQL, GenAI orchestration) and integrated
+  **LTI 1.3** for LMS interoperability; drove product from 0 to V2 across dual portals
+- [Full write-up](01-analytiq/)
 
-**Blue Green Brands** — Business Intelligence & Analyst Intern · Jun – Dec 2025 · Hybrid
+**Blue Green** — Business Intelligence & Analyst Intern · Sep 2025 – May 2026 · Hybrid
+*Promoted from Data Analyst & Migration Intern (Jun – Sep 2025)*
 - Project lead on a full-scale cloud data migration: **800+** workbooks, dashboards and datasets
   from legacy GCP Sigma to AWS Sigma in **2.5 months with zero errors**, designing the migration
-  plan, SQL replication logic and QA process
-- Built **30+** Power BI and Sigma dashboards in 4 months while maintaining a 50+ dashboard
-  portfolio across three enterprise clients
-- Primary liaison across **8+** internal and client stakeholder teams
+  plan, SQL replication logic and QA/reconciliation process
+- Built **30+** Power BI and Sigma dashboards in 4 months while maintaining a **50+** dashboard
+  portfolio for enterprise clients **Fiserv, Clover and Fidelity**
+- Primary liaison across **8+** internal and client stakeholder teams; delivered monthly
+  cross-source reporting and partnered on go-to-market and product packaging strategy
 
 *Client work under NDA — described here, no files published.*
+
+**Brunk Industries** — Finance Analyst Intern · Mar – Jun 2025 · Remote
+- Built DCF models, revenue forecasts and cost-revenue analyses in Excel and Python, informing
+  **3 strategic expansion proposals** with **$500K+** projected revenue impact — all approved
+- Analysed SAP budget-vs-actual reports to isolate cost inefficiencies, driving a **7% cost
+  improvement** across manufacturing units
+- Benchmarked **10–15** manufacturing companies and researched expansion into clean energy
+- Designed a composite part-level operations score, approved by leadership —
+  [see the write-up](04-strategic-consulting/brunk-industries-ops-scoring/)
+
+**Wafa IMA Assistance** — Accounting & Finance Intern · May – Jun 2024 · Casablanca, Morocco
+- Recorded and organised daily financial transactions, supporting the finance team's reporting cycle
+- Assisted with budget preparation, financial projections and day-to-day accounting operations
 
 ### Leadership
 
